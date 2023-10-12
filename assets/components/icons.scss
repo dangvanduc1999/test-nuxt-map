@@ -1,0 +1,29 @@
+/* ------------------------------------------------------------ *\
+	Icons
+\* ------------------------------------------------------------ */
+
+.ico-cart {
+	display: inline-block;
+	width: 3rem; 
+
+	@include breakpoint-down(mobile) {
+		width: 2.2rem;
+	}
+
+	img {
+		width: 100%; 
+	}
+}
+
+.ico-login {
+	display: inline-block;
+	width: 4.7rem; 
+
+	@include breakpoint-down(mobile) {
+		width: 3.2rem;
+	}
+
+	img {
+		width: 100%; 
+	}
+}

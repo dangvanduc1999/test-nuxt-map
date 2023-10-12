@@ -1,0 +1,49 @@
+/* ------------------------------------------------------------ *\
+	cards Testimonials
+\* ------------------------------------------------------------ */
+
+.cards-testimonials {
+	max-width: 116.4rem;
+	margin: 0 auto; 
+
+	.cards__items {
+		display: flex;
+		flex-flow: row wrap;
+		margin: 0rem -3.4rem -8.2rem; 
+
+		@include breakpoint-down(large-desktop) {
+			margin: 0rem -2rem -4rem; 
+		}
+
+		@include breakpoint-down(mobile) {
+			margin: 0rem -1rem -2rem; 
+		}
+
+		@include breakpoint-down(mobile-medium) {
+			margin: 0 0 -2rem; 
+		}
+	}
+
+	.cards__item {
+		flex: 0 0 50%;
+		max-width: 50%;
+		padding: 0 3.4rem;
+		margin-bottom: 8.2rem; 
+
+		@include breakpoint-down(large-desktop) {
+			padding: 0rem 2rem; 
+			margin-bottom: 4rem; 
+		}
+
+		@include breakpoint-down(mobile) {
+			padding: 0rem 1rem; 
+			margin-bottom: 2rem; 
+		}
+
+		@include breakpoint-down(mobile-medium) {
+			flex: 0 0 100%;
+			max-width: 100%;
+			padding: 0; 
+		}
+	}
+}

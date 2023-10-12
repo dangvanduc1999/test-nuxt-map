@@ -1,0 +1,92 @@
+/* ------------------------------------------------------------ *\
+	testimonial
+\* ------------------------------------------------------------ */
+
+.testimonial {
+	height: 100%; 
+	position: relative; 
+	background: $c-black2;
+	box-shadow: 0px .4rem .4rem rgba(0, 0, 0, 0.25);
+	border-radius: 1.1rem;
+	color: $c-white;
+	font-size: 2.4rem; 
+	font-weight: 500; 
+	line-height: 1.17;
+	padding: 4rem 0 0rem; 
+
+	@include breakpoint-down(tablet) {
+		font-size: 1.8rem; 
+	}
+
+	.testimonial__icon {
+		position: absolute;
+		top: -2.2rem; 
+		right: -1.4rem; 
+
+		@include breakpoint-down(mobile) {
+			max-width: 7.5rem;
+			right: -.4rem; 
+			top: -1.6rem; 
+		}
+	}	
+
+	.testimonial__inner {
+		position: relative; 
+		padding: 2.7rem 3.7rem 1rem 4.4rem; 
+		height: 36.5rem;
+		overflow: auto;
+
+		@include breakpoint-down(tablet) {
+			padding: 3rem; 
+			height: 30rem; 
+		}
+
+		@include breakpoint-down(mobile) {
+			height: auto; 
+		}
+	}
+
+	.testimonial__content {
+		width: 100%; 
+		max-width: 46.5rem;
+	}
+
+	blockquote {
+		margin-bottom: 5.6rem; 
+	}
+
+	.testimonial__author {
+		font-weight: 700; 
+	}
+
+}
+
+/*  testimonial alt  */
+
+.testimonial--alt {
+	.testimonial__inner {
+		padding-left: 4rem; 
+
+		@include breakpoint-down(tablet) {
+			padding: 3rem; 
+		}
+	}
+
+		
+}
+
+/*  testimonial--size1  */
+
+.testimonial--size1 {
+	.testimonial__content {
+		max-width: 45.5rem;
+	}
+}
+
+/*  testimonial--margin-small  */
+
+.testimonial--margin-small {
+	blockquote {
+		margin-bottom: 2.7rem; 
+	}	
+}

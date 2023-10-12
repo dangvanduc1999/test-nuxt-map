@@ -1,0 +1,58 @@
+/* ------------------------------------------------------------ *\
+	Product Small
+\* ------------------------------------------------------------ */
+
+.product-small {
+	text-align: center;
+	display: flex; 
+	flex-direction: column;
+
+	h6 {
+		margin-bottom: .5rem;
+		color: $c-700-blue;
+
+		@include breakpoint-down(tablet) {
+			font-size: 1.8rem; 
+		}
+	}
+
+	.product__image {
+		margin: 0 auto 1rem;
+		max-width: 30rem;
+		height: auto;
+
+		@include breakpoint-down(tablet) {
+			max-width: 14.7rem;
+		}
+	}
+
+	.product__image img {
+		width: 100%;
+		height: 100%;
+		object-fit: contain;
+	}
+
+	.product__content {
+		margin-bottom: .8rem;
+		padding-bottom: 2rem; 
+		flex: 1;
+		position: relative; 
+	}
+
+	.product__price {
+		font-weight: 700; 
+		position: absolute; 
+		bottom: 0; 
+		left: 50%; 
+		transform: translateX(-50%);
+
+		@include breakpoint-down(tablet) {
+			font-size: 1.4rem; 
+		}
+	}
+
+	.product__btn {
+		width: fit-content;
+		align-self: center;
+	}
+}

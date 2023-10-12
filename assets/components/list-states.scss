@@ -1,0 +1,47 @@
+/* ------------------------------------------------------------ *\
+	list states
+\* ------------------------------------------------------------ */
+
+.list-states {
+	display: flex;
+	flex-flow: row wrap;
+	list-style: none;
+	margin: 0rem -.5rem -1.8rem; 
+
+	li {
+		flex: 0 0 25%;
+		max-width: 25%;
+		text-align: center;
+		font-size: 1.4rem; 
+		font-weight: 700; 
+		margin-bottom: 1.8rem; 
+		transition: opacity .3s;
+
+		@include breakpoint-down(mobile-medium) {
+			flex: 0 0 33.33%;
+			max-width: 33.33%;
+		}
+	}
+
+	li:hover {
+		opacity: .7; 
+	}
+
+	a {
+		display: inline-block;
+		text-decoration: none;
+		width: 100%; 
+	}
+
+	a img {
+		width: 8rem; 
+		height: 8rem; 
+		margin: 0 auto; 
+		display: block;
+	}
+
+	a span  {
+		text-transform: uppercase;
+		display: inline-block;
+	}
+}

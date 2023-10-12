@@ -1,0 +1,24 @@
+/* ------------------------------------------------------------ *\
+	list-images
+\* ------------------------------------------------------------ */
+
+.list-images {
+	list-style: none;
+	display: flex;
+	@include breakpoint-down(mobile) {
+		flex-flow: row wrap;
+	}
+
+	li {
+		@include breakpoint-down(mobile) {
+			flex: 0 0 50%;
+			max-width: 50%; 
+		}
+	}
+
+	li img {
+		object-fit: cover;
+		width: 100%; 
+		height: 100%; 
+	}
+}

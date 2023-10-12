@@ -1,0 +1,46 @@
+/* ------------------------------------------------------------ *\
+	Section
+\* ------------------------------------------------------------ */
+
+.section {
+	padding: 9rem 0 11.4rem;
+
+	@include breakpoint-down(mobile) {
+		padding: 4.5rem 0rem 5rem; 
+	}
+
+	.section__actions {
+		margin-top: 8rem; 
+		text-align: center;
+	}
+}
+
+/*  section alt  */
+
+.section--alt {
+	padding: 2.9rem 0 10.4rem; 
+
+	@include breakpoint-down(mobile) {
+		padding: 2.9rem 0rem 5rem; 
+	}
+
+	h1 {
+		padding-left: 4rem; 
+		text-align: center;
+		font-size: 7.4rem; 
+		font-weight: 900; 
+		margin-bottom: 4rem; 
+
+		@include breakpoint-down(tablet) {
+			font-size: 6rem; 
+		}
+
+		@include breakpoint-down(mobile) {
+			font-size: 5rem; 
+		}
+
+		@include breakpoint-down(small-desktop) {
+			padding-left: 0; 
+		}
+	}
+}

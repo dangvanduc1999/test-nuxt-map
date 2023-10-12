@@ -1,0 +1,16 @@
+/* ------------------------------------------------------------ *\
+	Map
+\* ------------------------------------------------------------ */
+
+.map {
+	display: inline-block;
+	transition: transform .3s;
+
+	@include breakpoint-down(mobile) {
+		padding: 0rem 0rem; 
+	}
+
+	&:hover {
+		transform: scale(.97);
+	}
+}

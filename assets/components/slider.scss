@@ -1,0 +1,50 @@
+/* ------------------------------------------------------------ *\
+	Slider
+\* ------------------------------------------------------------ */
+
+.slider {
+	position: relative; 
+	border: solid .2rem #000;
+	padding: 4rem 5.3rem 2.4rem; 
+
+	@include breakpoint-down(mobile) {
+		padding: 0; 
+		border: 0;
+		max-width: 70%; 		
+		overflow: visible; 
+		margin-top: 2rem; 
+	}
+
+	.slider__slide {
+		height: auto;
+		transition: box-shadow .3s; 
+	}
+
+	.swiper-slide-active {
+		box-shadow: 0px 0px 4px 3px rgba(0, 0, 0, 0.29);
+	}
+
+	.slider__btn:after {
+		display: none;
+	}
+
+	.swiper-button-next, .swiper-button-prev {
+		top: 40.6%; 
+
+		@include breakpoint-down(tablet) {
+			display: none;
+		}
+	}
+
+	.swiper-button-prev, .swiper-rtl .swiper-button-next {
+		left: 4.5rem; 
+	}
+
+	.swiper-button-next, .swiper-rtl .swiper-button-prev {
+		right: 4rem; 
+	}
+
+	.swiper-slide-active .product .product__btn {
+		opacity: 1; 
+	}
+}

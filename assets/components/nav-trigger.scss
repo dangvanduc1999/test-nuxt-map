@@ -1,0 +1,57 @@
+/* ------------------------------------------------------------ *\
+	Nav trigger
+\* ------------------------------------------------------------ */
+
+.nav-trigger {
+	position: relative; 
+	width: 2.4rem; 
+	height: 1.8rem; 
+	display: none;
+
+	@include breakpoint-down(mobile-medium) {
+		display: block;
+	}
+
+	span {
+		display: inline-block;
+		position: absolute;
+		left: 0; 
+		width: 100%; 
+		height: .2rem; 
+		background-color: $c-dark-blue;
+		transition: opacity .3s .4s, top .3s .4s, transform .3s .25s;
+	}
+
+	span:first-child {
+		top: 0; 
+	}
+
+	span:nth-child(2) {
+		top: .8rem; 
+	}
+
+	span:last-child {
+		top: 1.6rem; 
+	}
+}
+
+.nav-trigger.is-active {
+	span {
+		transition: opacity .3s .25s, top .3s .25s, transform .3s .4s;
+	}
+
+	span:first-child {
+		top: .8rem; 
+		transform: rotate(45deg);
+	}
+
+	span:nth-child(2) {
+		transform: translateX(-50%);
+		opacity: 0; 
+	}
+
+	span:last-child {
+		top: .8rem; 
+		transform: rotate(-45deg);
+	} 
+}

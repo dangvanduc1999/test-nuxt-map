@@ -1,0 +1,29 @@
+/* ------------------------------------------------------------ *\
+	Tiles
+\* ------------------------------------------------------------ */
+
+.tiles {
+	ul {
+		margin: -2.3rem;
+		display: flex; 
+
+		@include breakpoint-down(mobile) {
+			display: block; 
+		}
+	}
+
+	li {
+		padding: 2.3rem;
+		flex: 0 0 calc(100% / 3);
+		list-style-type: none; 
+
+		@include breakpoint-down(mobile) {
+			margin: 0 auto;
+			max-width: 70%;
+		}
+
+		@include breakpoint-down(mobile-small) {
+			max-width: 90%;
+		}
+	}
+}

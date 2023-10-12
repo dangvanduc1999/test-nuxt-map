@@ -1,0 +1,32 @@
+/* ------------------------------------------------------------ *\
+	list partners
+\* ------------------------------------------------------------ */
+
+.list-partners {
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	list-style: none; 
+	flex-flow: row wrap;
+
+	@include breakpoint-down(mobile) {
+		justify-content: center;
+		margin: 0rem -2rem; 
+	}
+
+	li {
+		@include breakpoint-down(mobile) {
+			flex: 0 0 33.33%;
+			max-width: 33.33%;
+			padding: 0rem 2rem; 
+		}
+	}
+
+	li + li {
+		margin-left: 1.5rem; 
+
+		@include breakpoint-down(mobile) {
+			margin-left: 0; 
+		}
+	}
+}

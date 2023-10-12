@@ -1,0 +1,17 @@
+/* ------------------------------------------------------------ *\
+	Section testimonials
+\* ------------------------------------------------------------ */
+
+.section-testimonials {
+	padding: 4.4rem 0 3.8rem; 	
+
+	h3 {
+		text-align: center;
+		padding-left: 1rem; 
+		margin-bottom: 7.9rem; 
+
+		@include breakpoint-down(tablet) {
+			margin-bottom: 4rem; 
+		}
+	}
+}

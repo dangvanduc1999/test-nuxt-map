@@ -1,0 +1,39 @@
+/* ------------------------------------------------------------ *\
+	Select
+\* ------------------------------------------------------------ */
+
+.select {
+	position: relative; 
+	color: $c-700-blue;
+	font-size: 1.4rem; 
+
+	select::-ms-expand {
+		display: none;
+	}
+
+	select {
+		padding: .6rem 2rem .5rem;
+		appearance: none;
+		width: 100%;
+		text-transform: uppercase; 
+		font-weight: 500; 
+		-webkit-appearance: none;
+		-webkit-border-radius: 0;
+		background: transparent;
+		border: .1rem solid $c-black;
+	}
+
+	.select__arrow {
+		position: absolute; 
+		top: .7rem; 
+		right: 1rem; 
+		width: 2.2rem;
+		height: auto;
+		pointer-events: none;
+	}
+
+	.select__arrow img {
+		width: 100%;
+		height: auto;
+	}
+}

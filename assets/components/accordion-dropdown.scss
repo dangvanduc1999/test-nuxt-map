@@ -1,0 +1,133 @@
+/* ------------------------------------------------------------ *\
+	Accordion dropdown
+\* ------------------------------------------------------------ */
+
+.accordion-dropdown {
+	opacity: 0; 
+	visibility: hidden; 
+	position: absolute; 
+	top: 100%; 
+	left: 0;
+	width: 100%; 
+	background-color: $c-dark-blue;
+	color: $c-white;
+	padding: 2rem 0; 
+	z-index: 2; 
+	transition: opacity .3s, visibility .3s;
+	text-align: left;
+
+	@include breakpoint-down(mobile-medium) {
+		position: relative; 
+		top: auto; 
+		left: auto; 
+		margin: 1rem 0;
+		display: none;
+	}
+
+	&:before {
+		content: '';
+		position: absolute;
+		left: 0; 
+		bottom: 100%; 
+		width: 100%; 
+		height: 1.4rem; 
+		background-color: transparent;
+
+		@include breakpoint-down(tablet) {
+			display: none;
+		}
+	}
+
+	&.visible {
+		opacity: 1;
+		visibility: visible;  
+		
+		@include breakpoint-down(mobile-medium) {
+			display: block;
+		}
+	}
+
+	.accordion__inner {
+		padding: 0rem 2rem;
+
+		@include breakpoint-down(mobile) {
+		 	padding: 0rem .5rem; 
+		} 
+	}
+
+	.accordion__section + .accordion__section {
+		margin-top: 1.9rem; 
+
+		@include breakpoint-down(mobile) {
+			margin-top: 1.8rem; 
+		}
+	}
+
+	.accordion__head {
+		cursor: pointer;
+		position: relative; 
+		padding-left: 2rem; 
+
+		@include breakpoint-down(mobile) {
+			padding-left: 1.9rem; 
+		}
+	}
+
+	.accordion__head:before {
+		content: '';
+		position: absolute; 
+		top: .6rem; 
+		left: 0; 
+		width: 1rem; 
+		height: .2rem; 
+		background-color: #007A7A;
+	}
+
+	.accordion__head:after {
+		content: '';
+		position: absolute; 
+		top: .6rem; 
+		left: 0; 
+		width: 1rem; 
+		height: .2rem; 
+		transform: rotate(-90deg);
+		background-color: #007A7A;
+		transition: opacity .3s;
+	}
+
+	.accordion__section.is-active .accordion__head:after {
+		opacity: 0; 
+	}
+
+	.accordion__head h6 {
+		font-size: 1.4rem; 
+
+		@include breakpoint-down(mobile) {
+			font-size: 1.2rem; 
+		}
+
+		@include breakpoint-down(mobile-medium) {
+			font-size: 1.4rem; 
+		}
+	}
+
+	.accordion__body ul {
+		padding: .5rem 0rem .5rem 2rem; 
+		display: flex;
+		flex-flow: row wrap;
+		align-items: center;
+		margin-bottom: -1.1rem; 
+	}
+
+	.accordion__body ul li {
+		margin-right: 2.7rem; 
+	}
+
+	.accordion__body ul li {
+		margin-bottom: 1.1rem; 
+	}
+
+	.accordion__body ul li {
+		font-weight: 300; 
+	}
+}

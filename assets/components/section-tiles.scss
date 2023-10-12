@@ -1,0 +1,23 @@
+/* ------------------------------------------------------------ *\
+	Section Tiles
+\* ------------------------------------------------------------ */
+
+.section-tiles {
+	padding: 7rem 0;
+	text-align: center;
+	overflow: hidden;
+
+
+	@include breakpoint-down(tablet) {
+		padding: 3rem 0 1.5rem;
+	}
+
+	h4 {
+		margin-bottom: 6rem;
+
+		@include breakpoint-down(tablet) {
+			margin-bottom: 2.2rem;
+			font-size: 3rem; 
+		}
+	}
+}

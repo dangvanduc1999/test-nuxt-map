@@ -1,0 +1,39 @@
+/* ------------------------------------------------------------ *\
+	Socials
+\* ------------------------------------------------------------ */
+
+.socials {
+	ul {
+		list-style: none;
+		text-align: center;
+
+		@include breakpoint-down(tablet) {
+			display: flex;
+			align-items: center;
+		}
+
+		@include breakpoint-down(mobile-medium) {
+			justify-content: center;
+		}
+	}
+
+	li + li {
+		margin-top: 2.4rem; 
+
+		@include breakpoint-down(tablet) {
+			margin: 0rem 0rem 0rem 2.4rem; 
+		}
+
+		@include breakpoint-down(mobile) {
+			margin-left: 2rem; 
+		}
+	}
+
+	li {
+		transition: opacity .3s;
+	}
+
+	li:hover {
+		opacity: .7; 
+	}
+}

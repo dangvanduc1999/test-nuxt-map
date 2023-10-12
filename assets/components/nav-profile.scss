@@ -1,0 +1,32 @@
+/* ------------------------------------------------------------ *\
+	nav profile
+\* ------------------------------------------------------------ */
+
+.nav-profile {
+	ul {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	li + li {
+		margin-left: 2.4rem; 
+
+		@include breakpoint-down(mobile) {
+			margin-left: 4rem; 
+		}
+	}
+
+	li {
+		transition: opacity .3s;
+	}
+
+
+	li:hover {
+		opacity: .7; 
+	}
+
+	a {
+		display: inline-block;
+	}
+}

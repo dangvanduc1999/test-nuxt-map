@@ -1,0 +1,37 @@
+//Variables
+$font-size-base             : 2rem;
+$font-weight-base           : 500;
+$line-height-base           : 1.185;
+
+$ff-sans-serif              : "Helvetica Neue", Helvetica, Arial, sans-serif;
+$ff-serif                   : Georgia, "Times New Roman", Times, serif;
+$ff-rubik                   : 'Rubik', sans-serif;
+
+$t-duration                 : 0.4s;
+
+$shell-max-width            : 140rem;
+$shell-gutter               : 2rem;
+
+$c-black                    : #000;
+$c-white                    : #fff;
+$c-base                     : #055590;
+$c-dark-blue 				: #242F2E;
+$c-black2 					: #1C2526;
+$c-green 					: #007A7A;
+$c-green2 					: #407470;
+$c-700-blue 				: #182F4E;
+
+
+$shadow 					: 0 .4rem .4rem rgba(0, 0, 0, 0.25);
+
+$responsive-ios             : 812px;
+
+$breakpoints: (
+	mobile-small: 374px,
+	mobile-medium: 575px,
+	mobile: 767px,
+	admin-bar: 782px,
+	tablet: 1023px,
+	small-desktop: 1199px,
+	large-desktop: 1399px
+);

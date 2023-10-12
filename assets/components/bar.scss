@@ -1,0 +1,16 @@
+/* ------------------------------------------------------------ *\
+	bar
+\* ------------------------------------------------------------ */
+
+.bar {
+	background-color: $c-white;
+	font-size: 1.6rem; 
+	text-align: center;
+	text-transform: uppercase;
+	padding: 1.5rem 1.5rem 1rem;
+
+	@include breakpoint-down(mobile) {
+		padding: 1rem 1rem .5rem; 
+		font-size: 1.2rem; 
+	}
+}

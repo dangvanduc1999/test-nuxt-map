@@ -1,0 +1,27 @@
+/* ------------------------------------------------------------ *\
+	Section Viewed
+\* ------------------------------------------------------------ */
+
+.section-viewed {
+	padding: 4rem 0 5.7rem;
+
+	h3 {
+		color: #182F4E;
+
+		@include breakpoint-down(tablet) {
+			font-size: 3.7rem; 
+		}
+	}
+
+	.section__head {
+		margin-bottom: 4.4rem;
+		text-align: center;
+	}
+
+	.section__body {
+
+		@include breakpoint-down(tablet) {
+			padding: 0 2rem;
+		}
+	}
+}

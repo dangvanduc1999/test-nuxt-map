@@ -1,0 +1,41 @@
+/* ------------------------------------------------------------ *\
+	Form
+\* ------------------------------------------------------------ */
+
+.form {
+	.form__head {
+		margin-bottom: 3.5rem;
+		padding-left: .3rem; 
+
+
+		@include breakpoint-down(tablet) {
+		 	font-size: 1.2rem; 
+		 } 
+	}
+
+	.form__head h6 { 
+		margin-bottom: 2rem;
+		text-align: center;
+
+		@include breakpoint-down(tablet) {
+			font-size: 1.8rem; 
+		}
+	}
+
+	.form__body {
+		margin-bottom: 5rem;
+	}
+
+	.form__row + .form__row {
+		margin-top: 2.6rem;
+	}
+
+	.form__actions {
+		text-align: center;
+	}
+
+	.form__btn {
+		border: none;
+		min-width: 16.3rem;
+	}
+}
