@@ -103,7 +103,7 @@
 	>ul > li > a {
 		@include breakpoint-down(mobile-medium) {
 			display: block;
-			margin: 0rem 1.5rem;
+			margin: 0  1.5rem;
 		}
 	}
 
