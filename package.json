@@ -19,5 +19,10 @@
     "vue": "^3.3.4",
     "vue-router": "^4.2.5",
     "wrangler": "^3.11.0"
+  },
+  "dependencies": {
+    "@ant-design/icons-vue": "^7.0.1",
+    "ant-design-vue": "^4.0.3",
+    "swiper": "^10.3.1"
   }
 }

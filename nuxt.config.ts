@@ -1,11 +1,18 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
+
 export default defineNuxtConfig({
+  components: [
+    {
+      path: '~/components',
+      extensions: ['.vue'],
+    }],
   modules: [
     "@nuxtjs/apollo",
   ],
+  plugins:['@/plugins/antd-ui'],
   devtools: { enabled: true },
   css: [
-    "~/assets/main.scss", 
+    "~/assets/main.scss",
   ],
   apollo: {
     clients: {
@@ -20,5 +27,4 @@ export default defineNuxtConfig({
       },
     },
   },
-  
 })

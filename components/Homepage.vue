@@ -85,7 +85,7 @@
 													<figure class="card__map">
 														<img src="https://store-hdumb.mybigcommerce.com/content/images/temp/map-mini1.png" alt="">
 													</figure>
-													
+
 													<div class="card__actions">
 														<a href="#" class="btn btn--green btn--mobile">Shop Now</a>
 													</div><!-- /.card__actions -->
@@ -201,134 +201,7 @@
 			</div><!-- /.shell -->
 		</section><!-- /.section -->
 
-		<section class="section-map">
-			<div class="shell">
-				<h2 class="h1">Maps By State</h2>
-
-				<a class="map popup-modal" href="#map-modal">
-					<img src="https://store-hdumb.mybigcommerce.com/content/images/temp/map.png" alt="">
-				</a>
-			</div><!-- /.shell -->
-		</section><!-- /.section-map -->
-
-		<div id="map-modal" class="white-popup-block mfp-hide modal-map">
-			<h6>Select Your State</h6>
-
-			<ul class="list-states">
-				<li>
-					<a href="#">
-						<img src="https://store-hdumb.mybigcommerce.com/content/images/svg/illinois.svg" alt="">
-
-						<span>il</span>
-					</a>
-				</li>
-
-				<li>
-					<a href="#">
-						<img src="https://store-hdumb.mybigcommerce.com/content/images/svg/indiana.svg" alt="">
-
-						<span>in</span>
-					</a>
-				</li>
-
-				<li>
-					<a href="#">
-						<img src="https://store-hdumb.mybigcommerce.com/content/images/svg/iowa.svg" alt="">
-
-						<span>ia</span>
-					</a>
-				</li>
-
-				<li>
-					<a href="#">
-						<img src="https://store-hdumb.mybigcommerce.com/content/images/svg/kentucky.svg" alt="">
-
-						<span>ky</span>
-					</a>
-				</li>
-
-				<li>
-					<a href="#">
-						<img src="https://store-hdumb.mybigcommerce.com/content/images/svg/michigan.svg" alt="">
-
-						<span>mi</span>
-					</a>
-				</li>
-
-				<li>
-					<a href="#">
-						<img src="https://store-hdumb.mybigcommerce.com/content/images/svg/wisconsin.svg" alt="">
-
-						<span>mn</span>
-					</a>
-				</li>
-
-				<li>
-					<a href="#">
-						<img src="https://store-hdumb.mybigcommerce.com/content/images/svg/missouri.svg" alt="">
-
-						<span>mo</span>
-					</a>
-				</li>
-
-				<li>
-					<a href="#">
-						<img src="https://store-hdumb.mybigcommerce.com/content/images/svg/new-york.svg" alt="">
-
-						<span>ny</span>
-					</a>
-				</li>
-
-				<li>
-					<a href="#">
-						<img src="https://store-hdumb.mybigcommerce.com/content/images/svg/ohio.svg" alt="">
-
-						<span>oh</span>
-					</a>
-				</li>
-
-				<li>
-					<a href="#">
-						<img src="https://store-hdumb.mybigcommerce.com/content/images/svg/pennslyvania.svg" alt="">
-
-						<span>pa</span>
-					</a>
-				</li>
-
-				<li>
-					<a href="#">
-						<img src="https://store-hdumb.mybigcommerce.com/content/images/svg/south-dakota.svg" alt="">
-
-						<span>sd</span>
-					</a>
-				</li>
-
-				<li>
-					<a href="#">
-						<img src="https://store-hdumb.mybigcommerce.com/content/images/svg/tennesee.svg" alt="">
-
-						<span>tn</span>
-					</a>
-				</li>
-
-				<li>
-					<a href="#">
-						<img src="https://store-hdumb.mybigcommerce.com/content/images/svg/texas.svg" alt="">
-
-						<span>tx</span>
-					</a>
-				</li>
-
-				<li>
-					<a href="#">
-						<img src="https://store-hdumb.mybigcommerce.com/content/images/svg/wisconsin.svg" alt="">
-
-						<span>wi</span>
-					</a>
-				</li>
-			</ul><!-- /.list-states -->
-			<p><a class="modal__close js-popup-close" href="#"></a></p>
-		</div>
+  <SectionMap/>
 
 		<section class="section-slider">
 			<div class="shell">
@@ -355,112 +228,11 @@
 								</div><!-- /.card__cols -->
 							</div><!-- /.card__body -->
 						</div><!-- /.card__content -->
-					</div><!-- /.card -->
-
-					<div class="slider js-slider swiper">
-						<span class="swiper-button-prev slider__btn">
-							<i>
-								<img src="https://store-hdumb.mybigcommerce.com/content/images/temp/arrow-left.png" alt="">
-							</i>
-						</span>
-
-						<span class="swiper-button-next slider__btn">
-							<i>
-								<img src="https://store-hdumb.mybigcommerce.com/content/images/temp/arrow-right.png" alt="">
-							</i>
-						</span>
-
-						<div class="slider__slides swiper-wrapper">
-							<div class="slider__slide swiper-slide">
-								<div class="product">
-									<div class="product__image">
-										<img src="https://store-hdumb.mybigcommerce.com/content/images/temp/hat.png" alt="">
-									</div><!-- /.product__image -->
-
-									<div class="product__content">
-										<h6>Kryptek Typhoon Trucker Hat</h6>
-
-										<a href="#" class="btn product__btn">Shop now</a>
-									</div><!-- /.product__content -->
-								</div><!-- /.product -->
-							</div><!-- /.slider__slide -->
-
-							<div class="slider__slide swiper-slide">
-								<div class="product">
-									<div class="product__image">
-										<img src="https://store-hdumb.mybigcommerce.com/content/images/temp/tshirt-black.png" alt="">
-									</div><!-- /.product__image -->
-
-									<div class="product__content">
-										<h6>Bass Topo series T-Shirt</h6>
-
-										<ul class="list-colors">
-											<li>
-												<a href="#" class="black"></a>
-											</li>
-
-											<li>
-												<a href="#" class="blue"></a>
-											</li>
-										</ul><!-- /.list-colors -->
-
-										<a href="#" class="btn product__btn">Shop now</a>
-									</div><!-- /.product__content -->
-								</div><!-- /.product -->
-							</div><!-- /.slider__slide -->
-
-							<div class="slider__slide swiper-slide">
-								<div class="product">
-									<div class="product__image">
-										<img src="https://store-hdumb.mybigcommerce.com/content/images/temp/tshirt-black.png" alt="">
-									</div><!-- /.product__image -->
-
-									<div class="product__content">
-										<h6>Bass Topo series T-Shirt</h6>
-
-										<ul class="list-colors">
-											<li>
-												<a href="#" class="black"></a>
-											</li>
-
-											<li>
-												<a href="#" class="blue"></a>
-											</li>
-										</ul><!-- /.list-colors -->
-
-										<a href="#" class="btn product__btn">Shop now</a>
-									</div><!-- /.product__content -->
-								</div><!-- /.product -->
-							</div><!-- /.slider__slide -->
-
-							<div class="slider__slide swiper-slide">
-								<div class="product">
-									<div class="product__image">
-										<img src="https://store-hdumb.mybigcommerce.com/content/images/temp/tshirt-white.png" alt="">
-									</div><!-- /.product__image -->
-
-									<div class="product__content">
-										<h6>Redfish Topo series T-Shirt</h6>
-
-										<ul class="list-colors">
-											<li>
-												<a href="#" class="white"></a>
-											</li>
-
-											<li>
-												<a href="#" class="black"></a>
-											</li>
-										</ul><!-- /.list-colors -->
-
-										<a href="#" class="btn product__btn">Shop now</a>
-									</div><!-- /.product__content -->
-								</div><!-- /.product -->
-							</div><!-- /.slider__slide -->
-						</div><!-- /.slider__slides -->
-					</div><!-- /.slider js-slider -->
-				</div><!-- /.section__inner -->
-			</div><!-- /.shell -->
-		</section><!-- /.section -->
+					</div>
+          <SectionSlider/>
+        </div>
+			</div>
+		</section>
 
 		<section class="section">
 			<div class="shell">
@@ -494,4 +266,6 @@
 </template>
 <script setup>
 
+import SectionMap from "~/components/home-modules/SectionMap.vue";
+import SectionSlider from "~/components/home-modules/SectionSlider.vue";
 </script>
