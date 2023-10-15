@@ -2,11 +2,12 @@
   <div>
    <Header/>
    {{ the_path }}
-   <ProductPage v-if="data.site.route.node.__typename == 'Product'"></ProductPage>
-   
-   <Homepage v-if="data.site.route.node.name == 'home'"></Homepage>
+<!--      <ProductPage v-if="data.site.route.node.__typename == 'Product'"></ProductPage>-->
+      <ProductPage ></ProductPage>
 
-   <pre>{{ data.site.route.node }}</pre>
+<!--   <Homepage v-if="data.site.route.node.name == 'home'"></Homepage>-->
+
+<!--   <pre>{{ data.site.route.node }}</pre>-->
 </div>
 </template>
 <script setup>
@@ -32,7 +33,7 @@ const query = gql`query{
           htmlBody
           id
           name
-        } 
+        }
         ... on Product {
 					name
 					description

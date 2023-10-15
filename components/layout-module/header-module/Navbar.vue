@@ -2,7 +2,7 @@
     <nav class="nav">
         <ul>
             <li>
-                <a-dropdown v-model:open="openDropdown" :overlayClassName="'nav-menu-dropdown'"
+                <a-dropdown :trigger="['click']" v-model:open="openDropdown" :overlayClassName="'nav-menu-dropdown'"
                             :destroyPopupOnHide="true">
                     <p>Maps</p>
                     <template class="nav-menu-dropdown" #overlay>
@@ -48,7 +48,7 @@
 </template>
 
 <script setup lang="ts">
-import MapDropDownMenu from "~/components/header-module/MapDropDownMenu.vue";
+import MapDropDownMenu from "~/components/layout-module/header-module/MapDropDownMenu.vue";
 
 const openDropdown = ref<boolean>(false)
 

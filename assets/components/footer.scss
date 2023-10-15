@@ -2,188 +2,58 @@
 	Footer
 \* ------------------------------------------------------------ */
 
-.footer {
-	background-color: $c-black2;
-	padding: 3.3rem 0; 
-	color: $c-white;
+.footer-wrapper {
+    background-color: $c-black2;
+    padding: 3rem 0;
+    width: 100%;
 
-	.footer__inner {
-		padding: 0rem 3rem 0 1.5rem; 
-	}
+    .wrapper-content {
+        max-width: 144rem;
+        width: 100%;
+        display: flex;
+        margin: 0 auto;
+        color: $c-white;
+        padding: 0 4rem;
+        gap: 4rem;
 
-	.footer__cols {
-		display: flex;
-		flex-flow: row wrap;
-		margin: 0rem -1.5rem; 
+        .content {
+            flex: 1;
 
-		@include breakpoint-down(tablet) {
-			margin-bottom: -2rem; 
-		}
-	}
+            .column-title {
+                font-size: 2.4rem;
+                font-weight: 700;
+                line-height: 2.8rem;
+                margin-bottom: 3rem;
+                color: $c-green3;
+                text-transform: capitalize;
+            }
+            .last-col {
+                text-align: center;
+                .column-list {
+                    margin-bottom: 2rem;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    flex-direction: column;
+                }
+            }
 
-	.footer__col {
-		padding: 0rem 1.5rem; 
+            .column-item {
+                margin-bottom: 2rem;
 
-		@include breakpoint-down(tablet) {
-			margin-bottom: 2rem; 
-		}
+                p, a {
+                    font-size: 2.4rem;
+                    font-weight: 400;
+                    line-height: 2.8rem;
+                    letter-spacing: 0em;
+                    margin-bottom: 2rem;
+                    display: inline-flex;
+                    color: $c-white;
+                    text-decoration: none;
+                    margin-bottom: 0;
+                }
 
-		@include breakpoint-down(mobile-medium) {
-			text-align: center;
-		}
-	}
-
-	.footer__col:not(:first-child) {
-		padding-top: 1.8rem; 
-	}
-
-	.footer__col--size1 {
-		flex: 0 0 15.1%;
-		max-width: 15.1%;
-
-		@include breakpoint-down(tablet) {
-			flex: 0 0 100%;
-			max-width: 100%;		
-		}
-	}
-
-	.footer__col--size2 {
-		flex: 0 0 20.5%;
-		max-width: 20.5%;
-
-		@include breakpoint-down(tablet) {
-			flex: 0 0 33.33%;
-			max-width: 33.33%;			
-		}
-
-		@include breakpoint-down(mobile) {
-			flex: 0 0 50%;
-			max-width: 50%;			
-		}
-
-		@include breakpoint-down(mobile-medium) {
-			flex: 0 0 100%;
-			max-width: 100%;			
-		}
-	}
-
-	.footer__col--size3 {
-		flex: 0 0 25.9%;
-		max-width: 25.9%;
-
-		@include breakpoint-down(tablet) {
-			flex: 0 0 33.33%;
-			max-width: 33.33%;			
-		}
-
-		@include breakpoint-down(mobile) {
-			flex: 0 0 50%;
-			max-width: 50%;			
-		}		
-
-		@include breakpoint-down(mobile-medium) {
-			flex: 0 0 100%;
-			max-width: 100%;			
-		}
-	}
-
-	.footer__col--size4 {
-		flex: 0 0 22%;
-		max-width: 22%;
-
-		@include breakpoint-down(tablet) {
-			flex: 0 0 33.33%;
-			max-width: 33.33%;			
-		}
-
-		@include breakpoint-down(mobile) {
-			flex: 0 0 50%;
-			max-width: 50%;			
-		}
-
-		@include breakpoint-down(mobile-medium) {
-			flex: 0 0 100%;
-			max-width: 100%;			
-		}
-	}
-
-	.footer__col--size4 h6 {
-		padding-left: 2.2rem; 
-
-		@include breakpoint-down(tablet) {
-			padding-left: 0; 
-		}
-	}
-
-	.footer__col--size5 {
-		flex: 0 0 16.5%;
-		max-width: 16.5%;	
-
-		@include breakpoint-down(tablet) {
-			flex: 0 0 100%;
-			max-width: 100%;			
-		}
-
-		@include breakpoint-down(mobile) {
-			flex: 0 0 50%;
-			max-width: 50%;			
-		}
-
-		@include breakpoint-down(mobile-medium) {
-			flex: 0 0 100%;
-			max-width: 100%;			
-		}
-	}
-
-	.footer__col--centered h6 {
-		text-align: center;
-
-		@include breakpoint-down(tablet) {
-			text-align: left;
-		}
-
-		@include breakpoint-down(mobile-medium) {
-			text-align: center;
-		}
-	}
-
-	.footer__nav ul {
-		list-style: none;
-	}
-
-	.footer__nav li {
-		font-size: 2.4rem; 
-		font-weight: 400; 
-
-		@include breakpoint-down(small-desktop) {
-			font-size: 2rem; 
-		}
-	}
-
-	.footer__nav li a {
-		text-decoration: none;
-	}
-
-	.footer__nav li a:hover {
-		text-decoration: underline;
-	}
-
-	.footer__nav li + li {
-		margin-top: 1.9rem; 
-	}
-
-	.footer__contacts ul {
-		list-style: none;
-		font-size: 2.4rem; 
-		font-weight: 400; 
-	}
-
-	h6 {
-		color: #5DA09A;
-		margin-bottom: 4.2rem; 
-
-		@include breakpoint-down(mobile) {
-			margin-bottom: 2rem; 
-		}
-	}
+            }
+        }
+    }
 }

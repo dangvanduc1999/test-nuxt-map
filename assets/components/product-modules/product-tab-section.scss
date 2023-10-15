@@ -1,0 +1,17 @@
+.product-tab-section{
+    .ant-tabs-nav{
+        background-color: $c-500-gray;
+        height: 7.7rem;
+        .tab-title{
+            font-size: 2.4rem;
+            font-weight: bold;
+            line-height: 2.8rem;
+            color: $c-dark-blue;
+        }
+        .ant-tabs-ink-bar.ant-tabs-ink-bar-animated{
+            top: 55px;
+            height: 0.7rem;
+            background-color: $c-dark-blue;
+        }
+    }
+}

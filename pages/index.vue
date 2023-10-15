@@ -1,13 +1,11 @@
 <template>
-  <div>
-   <Header/>
    {{ data }}
 <!--    <Homepage :v-if="'home' == data.site.route.node.name"></Homepage>-->
-    <Homepage  ></Homepage>
-
-  </div>
+    <Homepage  />
 </template>
 <script setup>
+import Homepage from "~/components/home-modules/Homepage.vue";
+
 const route = useRoute();
 
 const query = gql` query{
