@@ -2,7 +2,7 @@
     <nav class="nav">
         <ul>
             <li>
-                <a-dropdown :trigger="['click']" v-model:open="openDropdown" :overlayClassName="'nav-menu-dropdown'"
+                <a-dropdown v-model:open="openDropdown" :overlayClassName="'nav-menu-dropdown'"
                             :destroyPopupOnHide="true">
                     <p>Maps</p>
                     <template class="nav-menu-dropdown" #overlay>
