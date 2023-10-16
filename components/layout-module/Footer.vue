@@ -1,5 +1,3 @@
-
-
 <template>
     <footer class="footer-wrapper">
         <div class="wrapper-content">
@@ -14,7 +12,7 @@
                         </h3>
                         <div class="column-list">
                             <div class="column-item" v-for="item in col.column_links">
-                                <NuxtLink v-if="item.isLink" :to="item['link']">{{item.name}}</NuxtLink>
+                                <nuxt-link v-if="item.isLink" :to="item['link']">{{item.name}}</nuxt-link>
                                 <p  v-else>{{item.name}}</p>
                             </div>
                         </div>

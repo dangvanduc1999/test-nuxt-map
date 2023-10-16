@@ -14,6 +14,12 @@ export default defineNuxtConfig({
   css: [
     "~/assets/main.scss",
   ],
+  runtimeConfig: {
+    public: {
+      accessToken: process.env.ACCESS_TOKEN,
+      authToken: process.env.AUTH_TOKEN,
+    },
+  },
   apollo: {
     clients: {
       default: {

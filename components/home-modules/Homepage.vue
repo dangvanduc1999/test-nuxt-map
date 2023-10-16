@@ -1,25 +1,5 @@
 <template>
- <div class="hero">
-			<div class="hero__inner">
-				<div class="hero__content">
-					<div class="hero__content-background">
-						<img src="https://store-hdumb.mybigcommerce.com/content/images/temp/hero-bg.jpg" alt="">
-					</div><!-- /.hero__content-background -->
-
-					<h1 class="h2">Navigate The Outdoors</h1>
-
-					<p>Sportsman's Connection is the leading provider of fishing maps and information across 13 states and All-Outdoors Atlases & Field Guides for five states, providing tremendous map detail and comprehensive information on all outdoor activities!</p>
-
-					<div class="hero__actions">
-						<a href="#" class="btn"> Shop Now</a>
-					</div><!-- /.hero__actions -->
-				</div><!-- /.hero__content -->
-
-				<div class="hero__image">
-					<img src="https://store-hdumb.mybigcommerce.com/content/images/temp/hero-image.jpg" alt="">
-				</div><!-- /.hero__image -->
-			</div><!-- /.hero__inenr -->
-		</div><!-- /.hero -->
+  		<SectionBanner/>
 
 		<section class="section-partners">
 			<div class="shell shell--alt">
@@ -268,4 +248,6 @@
 
 import SectionMap from "~/components/home-modules/SectionMap.vue";
 import SectionSlider from "~/components/home-modules/SectionSlider.vue";
+import SectionBanner from "~/components/home-modules/SectionBanner.vue";
+
 </script>

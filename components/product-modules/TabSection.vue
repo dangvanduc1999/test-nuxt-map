@@ -10,7 +10,7 @@
             <template #tab>
                 <p class="tab-title">Videos</p>
             </template>
-            <feature-tab />
+            <div>VIdeo tab</div>
         </a-tab-pane>
         <a-tab-pane key="3"  >
             <template #tab>

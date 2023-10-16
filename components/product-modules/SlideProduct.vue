@@ -35,9 +35,9 @@
                     :modules="modules"
                     class="big-slide"
                     :navigation=" {
-            nextEl: '.btn-arrow-next',
-            prevEl: '.btn-arrow-prev',
-          }"
+                        nextEl: '.btn-arrow-next',
+                        prevEl: '.btn-arrow-prev',
+                    }"
                 >
                     <swiper-slide v-for="item in bigSlideMock" :key="item.id">
                         <img :src="item.src" :alt="item.alt">

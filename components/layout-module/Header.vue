@@ -8,10 +8,10 @@
         <div class="header__content">
             <div class="shell">
                 <div class="header__content-inner">
-                    <a href="#" class="logo header__logo">
+                    <nuxt-link to="/" class="logo header__logo">
                         <img src="https://cdn11.bigcommerce.com/s-kipp5/content/theme_images/logo@2x.png" alt=""
                              width="550"/>
-                    </a>
+                    </nuxt-link>
                     <nav class="nav-profile">
                         <ul>
                         </ul>

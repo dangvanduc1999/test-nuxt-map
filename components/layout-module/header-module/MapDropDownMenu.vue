@@ -6,69 +6,47 @@
         </template>
         <a-collapse-panel key="1" header="Fishing Map Guides">
             <span>
-                <nuxt-link to="/fishing-map-guides/indiana">
-                    India
-                </nuxt-link>
+                <nuxt-link to="/fishing-map-guides/indiana/">Indiana</nuxt-link>
             </span>
             <span>
-                <nuxt-link to="/fishing-map-guides/iowa">
-                    Iowa
-                </nuxt-link>
+                <nuxt-link to="/fishing-map-guides/iowa/">Iowa</nuxt-link>
             </span>
         </a-collapse-panel>
         <a-collapse-panel key="2" header="All-Outdoors Atlas & Field Guides  ">
-             <span>
-                <nuxt-link to="/fishing-map-guides/michigan">
-                    Michigan
-                </nuxt-link>
+            <span>
+                <nuxt-link to="/all-outdoors-atlases/michigan/">Michigan</nuxt-link>
             </span>
             <span>
-                <nuxt-link to="/fishing-map-guides/new-york">
-                    New York
-                </nuxt-link>
+                <nuxt-link to="/all-outdoors-atlases/new-york/">New York</nuxt-link>
             </span>
         </a-collapse-panel>
-        <a-collapse-panel key="3" header="eBooks">
+        <!-- <a-collapse-panel key="3" header="eBooks">
+            <span>Iowa</span>
+            <span>Illinois</span>
+            <span>Indiana</span>
+        </a-collapse-panel> -->
+        <a-collapse-panel key="4" header="Wood Engraved Maps">
             <span>
-                <nuxt-link to="/fishing-map-guides/illinois">
-                    Illinois
-                </nuxt-link>
+                <nuxt-link to="/wood-engraved-maps/illinois/">Illinois</nuxt-link>
             </span>
             <span>
-                <nuxt-link to="/fishing-map-guides/indiana">
-                    Indiana
-                </nuxt-link>
+                <nuxt-link to="/wood-engraved-maps/indiana/">Indiana</nuxt-link>
             </span>
         </a-collapse-panel>
-<!--        <a-collapse-panel key="4" header="Wood Engraved Maps">-->
-<!--            <span>Iowa</span>-->
-<!--            <span>Illinois</span>-->
-<!--            <span>Indiana</span>-->
-<!--            <span>Kentucky</span>-->
-<!--            <span>Michigan</span>-->
-<!--            <span>Minnesota</span>-->
-<!--            <span>Missouri</span>-->
-<!--            <span>New York</span>-->
-<!--            <span>South Dakota</span>-->
-<!--            <span>Tennessee</span>-->
-<!--            <span>Texas</span>-->
-<!--            <span>Wisconsin</span>-->
-<!--        </a-collapse-panel>-->
-<!--        <a-collapse-panel key="5" header="Maps By State">-->
-
-<!--            <span>Iowa</span>-->
-<!--            <span>Illinois</span>-->
-<!--            <span>Indiana</span>-->
-<!--            <span>Kentucky</span>-->
-<!--            <span>Michigan</span>-->
-<!--            <span>Minnesota</span>-->
-<!--            <span>Missouri</span>-->
-<!--            <span>New York</span>-->
-<!--            <span>South Dakota</span>-->
-<!--            <span>Tennessee</span>-->
-<!--            <span>Texas</span>-->
-<!--            <span>Wisconsin</span>-->
-<!--        </a-collapse-panel>-->
+        <!-- <a-collapse-panel key="5" header="Maps By State">
+            <span>Iowa</span>
+            <span>Illinois</span>
+            <span>Indiana</span>
+            <span>Kentucky</span>
+            <span>Michigan</span>
+            <span>Minnesota</span>
+            <span>Missouri</span>
+            <span>New York</span>
+            <span>South Dakota</span>
+            <span>Tennessee</span>
+            <span>Texas</span>
+            <span>Wisconsin</span>
+        </a-collapse-panel> -->
     </a-collapse>
 </template>
 
