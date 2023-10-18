@@ -3,9 +3,8 @@ export default defineEventHandler(async (event) => {
     const runTimeConfig = useRuntimeConfig();
 
     const query = getQuery(event);
-    
+
     const path = query["product_path"];
-    
     for (const key in query) {
       if (!query[key]) delete query[key];
     }
@@ -96,7 +95,7 @@ export default defineEventHandler(async (event) => {
                     edges {
                       node {
                         sku
-        
+
                         entityId
                         productOptions {
                           edges {
@@ -129,7 +128,7 @@ export default defineEventHandler(async (event) => {
                       }
                     }
                   }
-        
+
                   variants {
                     edges {
                       node {
@@ -294,7 +293,6 @@ export default defineEventHandler(async (event) => {
       },
     });
 
-    console.log(data);
 
     return { data };
   } catch (err) {

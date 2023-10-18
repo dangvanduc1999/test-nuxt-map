@@ -1,4 +1,7 @@
 .product-tab-section{
+    @include breakpoint-down(mobile-medium) {
+        display: none !important;
+    }
     .ant-tabs-nav{
         background-color: $c-500-gray;
         height: 7.7rem;
@@ -13,5 +16,12 @@
             height: 0.7rem;
             background-color: $c-dark-blue;
         }
+    }
+
+}
+.mobile-tab-section {
+    display: none;
+    @include breakpoint-down(mobile-medium) {
+        display: block
     }
 }

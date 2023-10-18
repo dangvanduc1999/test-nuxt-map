@@ -6,7 +6,7 @@
             </div>
             <div class="content">
                 <a-row>
-                    <a-col :span="6" v-for="col in mockDataColumnLinkFooter"  :key="col.id">
+                    <a-col :xs="12" :sm="12" :md="6"   v-for="col in mockDataColumnLinkFooter"  :key="col.id">
                         <h3 class="column-title">
                             {{col.column_title}}
                         </h3>
@@ -17,7 +17,7 @@
                             </div>
                         </div>
                     </a-col>
-                    <a-col :span="6" class="last-col" >
+                    <a-col :xs="12" :sm="12" :md="6" class="last-col" >
                         <h3 class="column-title ">
                             follow us
                         </h3>

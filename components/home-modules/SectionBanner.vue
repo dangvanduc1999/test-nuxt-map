@@ -1,13 +1,20 @@
 <template>
     <swiper
+        :style="{
+        '--swiper-pagination-bullet-size':'12px',
+        '--swiper-pagination-bullet-inactive-color': 'transparent',
+        '--swiper-pagination-color' :'#AEE1FA'
+        }"
         :space-between="50"
         centered-slides
         :modules="modules"
-        :pagination="{
-            clickable: true,
-        }"
         @slideChange="onSlideChange"
         loop
+        :pagination="{
+            clickable: true,
+            currentClass :'.custom-bullet'
+        }"
+        class="section-banner-wrapper"
     >
         <swiper-slide>
             <div class="hero">
@@ -75,14 +82,14 @@
         </swiper-slide>
     </swiper>
   </template>
-  
+
   <script setup lang="ts">
-  
+
   import {Swiper, SwiperSlide} from 'swiper/vue';
-  import { Pagination } from 'swiper/modules';
+  import {Pagination} from 'swiper/modules';
   import 'swiper/css';
   import 'swiper/css/pagination';
-  
+
   const modules = [Pagination]
   const breakpoints = {
     '500' : {
@@ -98,9 +105,25 @@
       spaceBetween: 30,
     },
   }
-  
+
   const onSlideChange = () => {
     console.log('slide change');
   };
   </script>
-  
+<style scoped lang="scss">
+.section-banner-wrapper {
+    .swiper{
+        .swiper-pagination-bullet {
+            $size: 2.4rem;
+            display: inline-block;
+            width: 2.4rem !important;
+            height: 2.4rem !important;
+            border-radius: 100%;
+            background-color: red;
+            border: 1px solid #AEE1FA;
+        }
+    }
+}
+
+
+</style>

@@ -7,6 +7,7 @@
     padding: 3rem 0;
     width: 100%;
 
+
     .wrapper-content {
         max-width: 144rem;
         width: 100%;
@@ -15,6 +16,9 @@
         color: $c-white;
         padding: 0 4rem;
         gap: 4rem;
+        @include breakpoint-down(mobile-medium){
+            flex-direction: column;
+        }
 
         .content {
             flex: 1;
@@ -26,6 +30,10 @@
                 margin-bottom: 3rem;
                 color: $c-green3;
                 text-transform: capitalize;
+                @include breakpoint-down(mobile-medium){
+                    font-size: 1.8rem;
+                    line-height: 2rem;
+                }
             }
             .last-col {
                 text-align: center;
@@ -40,17 +48,22 @@
 
             .column-item {
                 margin-bottom: 2rem;
-
+                @include breakpoint-down(mobile-medium){
+                    margin-bottom: 1.5rem;
+                }
                 p, a {
                     font-size: 2.4rem;
                     font-weight: 400;
                     line-height: 2.8rem;
-                    letter-spacing: 0em;
-                    margin-bottom: 2rem;
+                    letter-spacing: 0 ;
                     display: inline-flex;
                     color: $c-white;
                     text-decoration: none;
                     margin-bottom: 0;
+                    @include breakpoint-down(mobile-medium){
+                        font-size: 1.6rem;
+                        line-height: 2rem;
+                    }
                 }
 
             }

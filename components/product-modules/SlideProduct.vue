@@ -12,9 +12,9 @@
                 :modules="modules"
                 class="small-slide"
             >
-                <swiper-slide v-for="item in smallSlideMock" :key="item.id">
+                <swiper-slide v-for="item in listSlideImage" :key="item.node.altText">
                     <div class="small-slide__item">
-                        <img :src="item.src" :alt="item.alt"/>
+                        <img :src="item.node.urlOriginal" :alt="item.node.altText"/>
                     </div>
                 </swiper-slide>
 
@@ -39,8 +39,8 @@
                         prevEl: '.btn-arrow-prev',
                     }"
                 >
-                    <swiper-slide v-for="item in bigSlideMock" :key="item.id">
-                        <img :src="item.src" :alt="item.alt">
+                    <swiper-slide v-for="item in listSlideImage" :key="item.node.altText">
+                        <img :src="item.node.urlOriginal" :alt="item.node.altText">
                     </swiper-slide>
                 </swiper>
                 <div class="btn-arrow btn-arrow-next">
@@ -59,123 +59,26 @@ import {ref} from 'vue';
 import {FreeMode, Navigation, Thumbs} from 'swiper/modules';
 import {Swiper, SwiperSlide} from 'swiper/vue';
 import 'swiper/css';
-import Michigan1 from "~/assets/images/sections/product-page/michigan1.png"
-import Michigan2 from "~/assets/images/sections/product-page/michigan2.png"
-import Michigan3 from "~/assets/images/sections/product-page/michigan3.png"
-import Michigan4 from "~/assets/images/sections/product-page/michigan4.png"
 
+interface image {
+    node: {
+        altText: string,
+        urlOriginal: string
+    }
+}
+
+interface Props {
+    listSlideImage: image[]
+}
+
+const {listSlideImage} = defineProps<Props>()
 const thumbsSwiper = ref(null);
 
 const setThumbsSwiper = (swiper: any) => {
     thumbsSwiper.value = swiper;
 };
 const modules = [FreeMode, Navigation, Thumbs]
-const smallSlideMock = [
-    {
-        id: 1,
-        src: Michigan1,
-        alt: 'img_1'
-    },
-    {
-        id: 2,
-        src: Michigan2,
-        alt: 'img_2'
-    },
-    {
-        id: 3,
-        src: Michigan3,
-        alt: 'img_3'
-    },
-    {
-        id: 4,
-        src: Michigan4,
-        alt: 'img_4'
-    },
-    {
-        id: 5,
-        src: Michigan1,
-        alt: 'img_5'
-    },
-    {
-        id: 6,
-        src: Michigan2,
-        alt: 'img_6'
-    },
-    {
-        id: 7,
-        src: Michigan3,
-        alt: 'img_7'
-    },
-    {
-        id: 8,
-        src: Michigan4,
-        alt: 'img_8'
-    },
-    {
-        id: 9,
-        src: Michigan1,
-        alt: 'img_9'
-    },
-    {
-        id: 10,
-        src: Michigan2,
-        alt: 'img_10'
-    },
 
-]
-const bigSlideMock = [
-    {
-        id: 1,
-        src: Michigan1,
-        alt: 'img_1'
-    },
-    {
-        id: 2,
-        src: Michigan2,
-        alt: 'img_2'
-    },
-    {
-        id: 3,
-        src: Michigan3,
-        alt: 'img_3'
-    },
-    {
-        id: 4,
-        src: Michigan4,
-        alt: 'img_4'
-    },
-    {
-        id: 5,
-        src: Michigan1,
-        alt: 'img_5'
-    },
-    {
-        id: 6,
-        src: Michigan2,
-        alt: 'img_6'
-    },
-    {
-        id: 7,
-        src: Michigan3,
-        alt: 'img_7'
-    },
-    {
-        id: 8,
-        src: Michigan4,
-        alt: 'img_8'
-    },
-    {
-        id: 9,
-        src: Michigan1,
-        alt: 'img_9'
-    },
-    {
-        id: 10,
-        src: Michigan2,
-        alt: 'img_10'
-    },
-
-]
 </script>
 <style scoped lang="scss">
 .small-slide {
@@ -222,11 +125,11 @@ const bigSlideMock = [
             }
 
             &:first-child {
-                margin-right: 8px;
+                margin-right: 0.8rem;
             }
 
             &:last-child {
-                margin-left: 8px;
+                margin-left: 0.8rem;
             }
         }
     }

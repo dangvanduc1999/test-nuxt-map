@@ -33,4 +33,8 @@ export default defineNuxtConfig({
       },
     },
   },
+  server:"static",
+  build: {
+    transpile: ["tslib"],
+  },
 })

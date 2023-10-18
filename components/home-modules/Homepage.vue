@@ -1,6 +1,5 @@
 <template>
   		<SectionBanner/>
-
 		<section class="section-partners">
 			<div class="shell shell--alt">
 				<h4>As Seen In:</h4>
@@ -249,5 +248,4 @@
 import SectionMap from "~/components/home-modules/SectionMap.vue";
 import SectionSlider from "~/components/home-modules/SectionSlider.vue";
 import SectionBanner from "~/components/home-modules/SectionBanner.vue";
-
 </script>

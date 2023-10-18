@@ -4,13 +4,13 @@
 
 .section-partners {
 	text-align: center;
-	padding: 4.2rem 0 3.8rem; 	
+	padding: 4.2rem 0 3.8rem;
 
 	@include breakpoint-down(mobile) {
-		padding: 1.5rem 0 2.3rem; 			
+		padding: 1.5rem 0 2.3rem;
 	}
 
 	h4 {
-		margin-bottom: 0rem; 
+		margin-bottom: 0 ;
 	}
 }
