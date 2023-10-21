@@ -30,11 +30,12 @@
                         <input type="search" name="q" id="q" value="" placeholder="Search" class="search__field"/>
                     </form>
                 </div>
-                <a href="#" class="nav-trigger js-nav-trigger">
+                <div class="nav-trigger js-nav-trigger" @click="toggleShowDrawerMobile">
                     <span></span>
                     <span></span>
                     <span></span>
-                </a>
+                </div>
+                <MobileNavBar @toggle="toggleShowDrawerMobile" :open="isShowDrawerMobile" />
             </div>
         </div>
     </header>
@@ -42,4 +43,12 @@
 <script lang="ts" setup>
 
 import Navbar from "~/components/layout-module/header-module/Navbar.vue";
+import MobileNavBar from "~/components/layout-module/header-module/MobileNavBar.vue";
+
+const isShowDrawerMobile = ref<boolean>(false)
+
+const toggleShowDrawerMobile = () => {
+    isShowDrawerMobile.value = !isShowDrawerMobile.value
+}
+
 </script>

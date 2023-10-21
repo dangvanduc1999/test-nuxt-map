@@ -10,13 +10,13 @@
             <template #tab>
                 <p class="tab-title">Videos</p>
             </template>
-            <feature-tab :description="description"/>
+            <!-- <feature-tab :description="description"/> -->
         </a-tab-pane>
         <a-tab-pane key="3"  >
             <template #tab>
                 <p class="tab-title">eBook Version</p>
             </template>
-            <feature-tab :description="description"/>
+            <!-- <feature-tab :description="description"/> -->
         </a-tab-pane>
     </a-tabs>
     <div class="mobile-tab-section">

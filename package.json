@@ -12,6 +12,8 @@
   "devDependencies": {
     "@nuxt/devtools": "latest",
     "@nuxtjs/apollo": "^5.0.0-alpha.6",
+    "@nuxtjs/google-fonts": "^3.0.2",
+    "@types/lodash": "^4.14.200",
     "nuxt": "^3.7.4",
     "sass": "^1.69.1",
     "vue": "^3.3.4",

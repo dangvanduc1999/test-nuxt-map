@@ -1,11 +1,5 @@
 <template>
-  <div class="slider js-slider">
-    <span class="swiper-button-prev slider__btn">
-      <i>
-        <img src="https://store-hdumb.mybigcommerce.com/content/images/temp/arrow-left.png" alt=""/>
-      </i>
-    </span>
-
+   
     <swiper
         :slides-per-view="1.7"
         :space-between="10"
@@ -19,7 +13,11 @@
         loop
         @slideChange="onSlideChange"
     >
-
+    <span class="swiper-button-prev slider__btn">
+      <i>
+        <img src="https://store-hdumb.mybigcommerce.com/content/images/temp/arrow-left.png" alt=""/>
+      </i>
+    </span>
       <swiper-slide>
         <div class="product">
           <div class="product__image">
@@ -137,13 +135,12 @@
           </div><!-- /.product__content -->
         </div><!-- /.product -->
       </swiper-slide>
-    </swiper>
-    <span class="swiper-button-next slider__btn">
+      <span class="swiper-button-next slider__btn">
       <i>
         <img src="https://store-hdumb.mybigcommerce.com/content/images/temp/arrow-right.png" alt=""/>
       </i>
     </span>
-  </div>
+    </swiper>
 
 </template>
 

@@ -41,10 +41,21 @@
 	.hero__content h1 {
 		margin-bottom: 2rem;
 		font-weight: 900;
+		font-size: 5rem;
+		text-shadow: 0 4px 4px rgba(0, 0, 0, 0.4);
+		font-family: $ff-rubik;
+		-webkit-text-stroke-width: 2px;
 
 		@include breakpoint-down(mobile) {
 		 	margin-bottom: .8rem;
 		}
+	}
+
+	.hero__content p {
+		font-family: $ff-rubik;
+		font-size: 1.6rem;
+		font-weight: 500;
+		line-height: 1.9rem;
 	}
 
 	.hero__content-background {

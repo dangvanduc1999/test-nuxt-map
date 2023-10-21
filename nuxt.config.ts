@@ -7,7 +7,12 @@ export default defineNuxtConfig({
       extensions: ['.vue'],
     }],
   modules: [
-    "@nuxtjs/apollo",
+    "@nuxtjs/apollo", ['@nuxtjs/google-fonts', {
+      families: {
+          Rubik : true
+      }
+  }],
+
   ],
   plugins:['@/plugins/antd-ui'],
   devtools: { enabled: true },

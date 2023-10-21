@@ -3,20 +3,21 @@
 \* ------------------------------------------------------------ */
 
 .nav-trigger {
-	position: relative; 
-	width: 2.4rem; 
+	position: relative;
+	width: 2.4rem;
 	height: 1.8rem; 
 	display: none;
 
 	@include breakpoint-down(mobile-medium) {
 		display: block;
+		cursor: pointer;
 	}
 
 	span {
 		display: inline-block;
 		position: absolute;
-		left: 0; 
-		width: 100%; 
+		left: 0;
+		width: 100%;
 		height: .2rem; 
 		background-color: $c-dark-blue;
 		transition: opacity .3s .4s, top .3s .4s, transform .3s .25s;
@@ -54,4 +55,59 @@
 		top: .8rem; 
 		transform: rotate(-45deg);
 	} 
+}
+
+.mobile-navbar-wrapper {
+	&.ant-drawer {
+		.ant-drawer-body {
+			padding: 0;
+
+			.menu-mobile-wrapper {
+				&.ant-menu {
+					li.ant-menu-item.menu-item {
+						flex-direction: row-reverse;
+						a {
+							text-decoration: none;
+							display: inline-block;
+							width: 100%;
+						}
+						.menu-item__wrapper {
+							width: 100%;
+							display: flex;
+							justify-content: space-between;
+							align-items: center;
+						}
+						.ant-menu-title-content {
+							margin-left: 0;
+						}
+					}
+					.ant-menu-title-content {
+						a {
+							text-decoration: none;
+							width: 100%;
+							display: inline-block;
+						}
+					}
+				}
+
+
+
+			}
+			.mobile-title__submenu {
+				display: flex;
+				align-items: center;
+				padding:1rem 2.2rem;
+				font-size: 1.6rem;
+				.icon {
+					margin-right: 2rem;
+					cursor: pointer;
+					font-size: 1.6rem;
+				}
+			}
+			.ant-divider.ant-divider-horizontal.divider-submenu{
+				margin-top: 0;
+				margin-bottom: 1rem;
+			}
+		}
+	}
 }

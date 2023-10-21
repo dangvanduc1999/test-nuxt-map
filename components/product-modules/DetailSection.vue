@@ -28,25 +28,25 @@
                                         </template>
                                         <a-select :disabled="listState.length === 0" :value="formState.state"
                                                   class="product-custom-select"
-                                                  placeholder="please select your zone">
+                                                  placeholder="please select your state">
                                             <a-select-option v-for="state in listState" :value="state.value"
                                                              :key="state.value">{{ state.value }}
                                             </a-select-option>
                                         </a-select>
                                     </a-form-item>
-                                    <a-form-item
-                                        name="region"
-                                    >
+                                    <a-form-item>
                                         <template #label>
                                             <p class="label-custom">Region</p>
                                         </template>
-                                        <a-select :disabled="listRegion.length === 0" :value="formState.region"
-                                                  class="product-custom-select"
-                                                  placeholder="please select your zone">
-                                            <a-select-option v-for="region in listRegion" :value="region.value"
-                                                             :key="region.value">{{ region.value }}
-                                            </a-select-option>
-                                        </a-select>
+                                        <a-form-item name="region">
+                                            <a-select :disabled="listRegions.length === 0" :value="formState.region"
+                                                      class="product-custom-select"
+                                                      placeholder="please select your region">
+                                                <a-select-option v-for="region in listRegions" :value="region.value"
+                                                                 :key="region.value">{{ region.value }}
+                                                </a-select-option>
+                                            </a-select>
+                                        </a-form-item>
                                     </a-form-item>
                                     <div class="wrapper-quanity">
                                         <p class="current-price">{{ priceText }}</p>
@@ -74,15 +74,15 @@
                                 <div class="action-mobile">
                                     <a-select :disabled="listState.length === 0" :value="formState.state"
                                               class="product-custom-select"
-                                              placeholder="please select your zone">
+                                              placeholder="please select your state">
                                         <a-select-option v-for="state in listState" :value="state.value"
                                                          :key="state.value">{{ state.value }}
                                         </a-select-option>
                                     </a-select>
-                                    <a-select :disabled="listRegion.length === 0" :value="formState.region"
+                                    <a-select :disabled="listRegions.length === 0" :value="formState.region"
                                               class="product-custom-select"
-                                              placeholder="please select your zone">
-                                        <a-select-option v-for="region in listRegion" :value="region.value"
+                                              placeholder="please select your region">
+                                        <a-select-option v-for="region in listRegions" :value="region.value"
                                                          :key="region.value">{{ region.value }}
                                         </a-select-option>
                                     </a-select>
@@ -142,11 +142,12 @@
 <script setup lang="ts">
 import {StarOutlined} from "@ant-design/icons-vue"
 import {roundToTwoDecimalPlaces} from "~/utils/helper/formatNumber";
+import _ from "lodash"
 
 interface FormState {
     layout: string;
     state: string;
-    region: string;
+    region: string | undefined;
     quanity: number;
 }
 
@@ -163,15 +164,28 @@ interface Props {
     },
     listState: stateRegion[],
     listRegion: stateRegion[]
+    path : string
 }
 
 const {name, price, listState, listRegion} = defineProps<Props>()
+const route = useRoute();
 
 const formState = reactive<FormState>({
     layout: "vertical",
-    state: listState[0] || "",
-    region: listRegion[0] || "",
+    state: listState[0].value || "",
+    region:  undefined,
     quanity: 1
+});
+
+const { data: nodeDetails } = await useFetch("/api/category_options", {
+    query: {
+        categoryId: 1022,
+        productAttr: `{ attribute:"State", values:["${formState.state}"] }`,
+        cursor: null,
+    },
+    onRequestError({ error: Error, request  }){
+        console.error(`error from ${request} with response error ${Error.message}`)
+    }
 });
 
 
@@ -192,7 +206,30 @@ const positiveQuanity = computed({
         }
     }
 });
-//method
+
+/*
+* Get all states for fishing map guides category 1022
+*/
+const listStates = computed<stateRegion[]>(() => { 
+
+})
+/*
+* Get path for product 
+*/
+const getProductUrlFromForm = computed<string>(() => { 
+
+})
+/*
+* Get all regions for fishing map guides category && for selected state
+*/
+const listRegions = computed<stateRegion[]>(() => {
+    let edgeProducts = _.get(nodeDetails.value, "data.data.site.search.searchProducts.products.edges",[])
+    //only show regions for current state
+    let regionsFilteredByState = [];
+    edgeProducts.forEach(((e) => {e.node.customFields.edges[0].node.value===formState.state&&void 0!==e.node.customFields.edges[1]?.node.value&&regionsFilteredByState.push(e.node.customFields.edges[1]?.node)}));
+        return regionsFilteredByState as stateRegion[]
+})
+
 const increseQuanity = () => {
     formState.quanity++
 }

@@ -1,6 +1,5 @@
 <template>
-    <main class="product-page-module">
-        {{ nodeDetails }}
+<main class="product-page-module">
         <grid-image-section />
         <detail-section :name="nameProduct" :list-slide-image="listImages" :price="priceProduct"
                         :list-region="listRegions" :list-state="listStates">
@@ -36,15 +35,6 @@ interface Props {
     data: any
 }
 
-
-//get category options 1022
-const route = useRoute();
-const { data: nodeDetails } = await useFetch("/api/category_options", {
-  query: {
-    category_id: 1022,
-  },
-});
-
 const props = defineProps<Props>()
 
 const ENUM_MAPPING_DATA = {
@@ -59,15 +49,13 @@ const customFields = _.get(props, "data.data.data.site.route.node.customFields.e
 const description = _.get(props, "data.data.data.site.route.node.description","")
 
 const listStates = customFields.filter(state => state.node.name === ENUM_MAPPING_DATA.state).map(state => ({
-    name: state.node.name,
-    value: state.node.value
+    name: state.node.name || "",
+    value: state.node.value || ""
 }))
 const listRegions = customFields.filter(state => state.node.name === ENUM_MAPPING_DATA.region).map(state => ({
     name: state.node.name,
     value: state.node.value
 }))
-
-
 
 </script>
 

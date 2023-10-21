@@ -4,12 +4,17 @@ export default defineEventHandler(async (event) => {
 
     const query = getQuery(event);
 
-    const category_id = query["category_id"];
+    const categoryId = query["categoryId"];
+    const productAttr =  `productAttributes:[  ${query["productAttr"]} ]`;
+    const $cursor = query["cursor"];
+    
     for (const key in query) {
       if (!query[key]) delete query[key];
     }
 
-    delete query["category_id"];
+    delete query["categoryId"];
+    delete query["productAttr"];
+    delete query["cursor"];
 
     const data = await $fetch("https://sandbox16.mybigcommerce.com/graphql", {
       method: "POST",
@@ -20,37 +25,41 @@ export default defineEventHandler(async (event) => {
       },
       body: {
         operationName: "getStateRegionPerCategory",
-        query: `query getStateRegionPerCategory {
-          site {
-            category(entityId: ${category_id}) {
-              name
-              products {
-                collectionInfo {
-                  totalItems
-                }
+        query: `query getStateRegionPerCategory($cursor: String = null) {
+  site {
+    search {
+      searchProducts(
+        filters: {searchSubCategories: false categoryEntityId:${categoryId} ${productAttr} }
+      ) {
+        products(first: 10, after: $cursor) {
+          collectionInfo {
+            totalItems
+          }
+          edges {
+            cursor
+            node {
+              customFields {
                 edges {
-                  cursor
                   node {
-                    customFields {
-                      edges {
-                        node {
-                          name
-                          value
-                        }
-                      }
-                    }
+                    name
+                    value
                   }
                 }
-                pageInfo {
-                  endCursor
-                  hasNextPage
-                  hasPreviousPage
-                  startCursor
-                }
               }
+              path
             }
           }
-        }`,
+          pageInfo {
+            endCursor
+            hasNextPage
+            hasPreviousPage
+            startCursor
+          }
+        }
+      }
+    }
+  }
+}`,
         variables: query.variables ? JSON.parse(query.variables) : {},
       },
     });

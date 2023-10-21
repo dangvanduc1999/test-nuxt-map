@@ -1,6 +1,6 @@
 <template>
     <ProductPage v-if="checkProductNode" :data="nodeDetails"></ProductPage>
-    <CategoryPage v-if="checkCategoryNode" :data="nodeDetails"></CategoryPage>    
+    <CategoryPage v-if="checkCategoryNode" :data="nodeDetails"></CategoryPage>
 </template>
 <script setup>
 import ProductPage from "~/components/product-modules/ProductPage.vue";
