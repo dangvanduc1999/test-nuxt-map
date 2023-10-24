@@ -26,7 +26,8 @@
                                         <template #label>
                                             <p class="label-custom">State</p>
                                         </template>
-                                        <a-select :disabled="listState.length === 0" :value="formState.state"
+                                        <a-select @change="refetchHook"
+                                                  :disabled="listState.length === 0" v-model:value="formState.state"
                                                   class="product-custom-select"
                                                   placeholder="please select your state">
                                             <a-select-option v-for="state in listState" :value="state.value"
@@ -39,10 +40,14 @@
                                             <p class="label-custom">Region</p>
                                         </template>
                                         <a-form-item name="region">
-                                            <a-select :disabled="listRegions.length === 0" :value="formState.region"
+                                            <a-select :disabled="queryCategoriReactive.listRegions.length === 0"
+                                                      v-model:value="formState.region"
+                                                      :loading="queryCategoriReactive.loading"
                                                       class="product-custom-select"
-                                                      placeholder="please select your region">
-                                                <a-select-option v-for="region in listRegions" :value="region.value"
+                                                      placeholder="please select your region"
+                                                      @change="handleChangeRegion">
+                                                <a-select-option v-for="region in queryCategoriReactive.listRegions"
+                                                                 :value="region.value"
                                                                  :key="region.value">{{ region.value }}
                                                 </a-select-option>
                                             </a-select>
@@ -72,18 +77,24 @@
                                 </a-form>
                                 <!--element for mobile-->
                                 <div class="action-mobile">
-                                    <a-select :disabled="listState.length === 0" :value="formState.state"
-                                              class="product-custom-select"
-                                              placeholder="please select your state">
+                                    <a-select :disabled="listState.length === 0" v-model:value="formState.state"
+                                        @change="refetchHook"
+                                        class="product-custom-select"
+                                        placeholder="please select your state">
                                         <a-select-option v-for="state in listState" :value="state.value"
                                                          :key="state.value">{{ state.value }}
                                         </a-select-option>
                                     </a-select>
-                                    <a-select :disabled="listRegions.length === 0" :value="formState.region"
-                                              class="product-custom-select"
-                                              placeholder="please select your region">
-                                        <a-select-option v-for="region in listRegions" :value="region.value"
-                                                         :key="region.value">{{ region.value }}
+                                    <a-select
+                                        :disabled="queryCategoriReactive.listRegions.length === 0"
+                                        v-model:value="formState.region"
+                                        :loading="queryCategoriReactive.loading"
+                                        class="product-custom-select"
+                                        placeholder="please select your region"
+                                        @change="handleChangeRegion">
+                                        <a-select-option v-for="region in queryCategoriReactive.listRegions"
+                                                :value="region.value"
+                                                :key="region.value">{{ region.value }}
                                         </a-select-option>
                                     </a-select>
                                     <div class="rating">
@@ -143,6 +154,12 @@
 import {StarOutlined} from "@ant-design/icons-vue"
 import {roundToTwoDecimalPlaces} from "~/utils/helper/formatNumber";
 import _ from "lodash"
+import {edgeProducts} from "~/type/product.type";
+import {getCategory} from "~/services/products.service";
+import type {stateRegion} from "~/type/product.type";
+import type {ObjectMapping} from "~/type/base.type";
+
+type mappingRegionToPathRefType = ObjectMapping<string> | null
 
 interface FormState {
     layout: string;
@@ -151,9 +168,13 @@ interface FormState {
     quanity: number;
 }
 
-interface stateRegion {
-    name: "State" | "Region",
-    value: string
+interface IqueryCategoriReactive {
+    cursorRef: null | string,
+    productAttrJsonRef: string,
+    hasNextPage: boolean,
+    listRegions: stateRegion[],
+    categoryId: number,
+    loading : boolean
 }
 
 interface Props {
@@ -163,88 +184,139 @@ interface Props {
         value: number
     },
     listState: stateRegion[],
-    listRegion: stateRegion[]
-    path : string
+    listRegion: stateRegion[],
+    currentState : string
 }
 
-const {name, price, listState, listRegion} = defineProps<Props>()
+const {name, price, listState, currentState} = defineProps<Props>()
+
 const route = useRoute();
 
-const formState = reactive<FormState>({
+const pathRef = ref(route.fullPath)
+const formState = ref<FormState>({
     layout: "vertical",
-    state: listState[0].value || "",
+    state: currentState || listState[0].value || "",
     region:  undefined,
     quanity: 1
 });
+const mappingRegionToPathRef = ref<mappingRegionToPathRefType>(null)
 
-const { data: nodeDetails } = await useFetch("/api/category_options", {
-    query: {
-        categoryId: 1022,
-        productAttr: `{ attribute:"State", values:["${formState.state}"] }`,
-        cursor: null,
-    },
-    onRequestError({ error: Error, request  }){
-        console.error(`error from ${request} with response error ${Error.message}`)
-    }
-});
+const listEdgeProductHasRegion = ref<edgeProducts[]>([])
+const queryCategoriReactive = reactive<IqueryCategoriReactive>({
+    loading : false,
+    cursorRef: null,
+    productAttrJsonRef: `{ attribute:"State", values:["${formState.value.state}"] }`,
+    hasNextPage: true,
+    listRegions: [],
+    categoryId: 1022,
+})
+
+watch(pathRef, async () => {
+    listEdgeProductHasRegion.value = []
+    queryCategoriReactive.cursorRef = null
+})
+
+watch(() => queryCategoriReactive.cursorRef, async () => {
+    handleGetAllCategory()
+})
+
+onMounted(() => {
+    handleGetAllCategory()
+
+})
 
 
 // computed region
 const priceText = computed(() => {
     if (price.currencyCode === "USD") {
-        return "$" + roundToTwoDecimalPlaces(price.value * formState.quanity)
+        return "$" + roundToTwoDecimalPlaces(price.value * formState.value.quanity)
     }
-    return `${roundToTwoDecimalPlaces(price.value * formState.quanity)}`
+    return `${roundToTwoDecimalPlaces(price.value * formState.value.quanity)}`
 })
 const positiveQuanity = computed({
-    get: () => formState.quanity,
+    get: () => formState.value.quanity,
     set: (value) => {
         if (value <= 0) {
-            formState.quanity = 1;
+            formState.value.quanity = 1;
         } else {
-            formState.quanity = value;
+            formState.value.quanity = value;
         }
     }
 });
 
-/*
-* Get all states for fishing map guides category 1022
-*/
-const listStates = computed<stateRegion[]>(() => { 
-
-})
-/*
-* Get path for product 
-*/
-const getProductUrlFromForm = computed<string>(() => { 
-
-})
-/*
-* Get all regions for fishing map guides category && for selected state
-*/
-const listRegions = computed<stateRegion[]>(() => {
-    let edgeProducts = _.get(nodeDetails.value, "data.data.site.search.searchProducts.products.edges",[])
-    //only show regions for current state
-    let regionsFilteredByState = [];
-    edgeProducts.forEach(((e) => {e.node.customFields.edges[0].node.value===formState.state&&void 0!==e.node.customFields.edges[1]?.node.value&&regionsFilteredByState.push(e.node.customFields.edges[1]?.node)}));
-        return regionsFilteredByState as stateRegion[]
-})
+const refetchHook = (value: string) => {
+    formState.value.region = undefined
+    queryCategoriReactive.listRegions = []
+    queryCategoriReactive.cursorRef = null
+    queryCategoriReactive.productAttrJsonRef = `{ attribute:"State", values:["${value}"] }`
+}
 
 const increseQuanity = () => {
-    formState.quanity++
+    formState.value.quanity++
 }
+
 const decreaseQuanity = () => {
-    if (formState.quanity <= 1) {
-        formState.quanity = 1
+    if (formState.value.quanity <= 1) {
+        formState.value.quanity = 1
         return;
     }
-    formState.quanity--
+    formState.value.quanity--
+}
+
+const handleChangeRegion =  (value: stateRegion['value']) => {
+    if(!mappingRegionToPathRef.value) {
+        return
+    }
+    const pathNavigate = mappingRegionToPathRef.value[value]
+    navigateTo(pathNavigate)
 }
 
 const onFinish = (values: any) => {
     console.log('Success:', values);
 };
 
+const handleGetAllCategory = () => {
+    queryCategoriReactive.loading = true
+    getCategory(queryCategoriReactive.categoryId, queryCategoriReactive.productAttrJsonRef, queryCategoriReactive.cursorRef)
+    .then(res => {
+        queryCategoriReactive.hasNextPage = _.get(res, "data.data.site.search.searchProducts.products.pageInfo.hasNextPage", false)
+
+        let edgeProducts = _.get(res, "data.data.site.search.searchProducts.products.edges", [])
+        let regionsFilteredByState: stateRegion[];
+
+        const listEdgeProducts: edgeProducts[] = edgeProducts.filter((item: edgeProducts) => {
+            const nodeState = _.get(item, "node.customFields.edges[0].node.value", "")
+            const isHasNoRegion = _.isEmpty(_.get(item, "node.customFields.edges", [])[1])
+            return !isHasNoRegion && nodeState === formState.value.state
+        })
+        listEdgeProductHasRegion.value = [...listEdgeProductHasRegion.value, ...listEdgeProducts]
+        // handle cache current path of current state
+        if (listEdgeProducts.length > 0) {
+            mappingRegionToPathRef.value = listEdgeProductHasRegion.value.reduce((acc, curr) => {
+                const valueMapping = _.get(curr, "node.customFields.edges[1].node.value")
+                // init formState region
+                if (_.get(curr, "node.path") === route.fullPath) {
+                    formState.value.region = valueMapping
+                }
+                (acc as any)[valueMapping] = _.get(curr, "node.path")
+                return acc
+            }, {})
+        }
+
+        // mapping current region to current state
+
+        regionsFilteredByState = listEdgeProducts.map(item => _.get(item, "node.customFields.edges[1].node", [{name: "Region", value: ""}])) as any
+        queryCategoriReactive.listRegions = [...queryCategoriReactive.listRegions, ...regionsFilteredByState]
+        if (queryCategoriReactive.hasNextPage) {
+            queryCategoriReactive.cursorRef = _.get(res, "data.data.site.search.searchProducts.products.pageInfo.endCursor", "no cursor")
+        }
+    })
+    .catch(error => {
+        console.log(error)
+    }).finally(() => {
+        queryCategoriReactive.loading = false
+    })
+}
 
 const onFinishFailed = (errorInfo: any) => {
     console.log('Failed:', errorInfo);

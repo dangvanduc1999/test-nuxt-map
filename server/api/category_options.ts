@@ -5,7 +5,8 @@ export default defineEventHandler(async (event) => {
     const query = getQuery(event);
 
     const categoryId = query["categoryId"];
-    const productAttr =  `productAttributes:[  ${query["productAttr"]} ]`;
+    const productAttr =  `productAttributes:[${query["productAttr"]}]`;
+
     const $cursor = query["cursor"];
     
     for (const key in query) {
@@ -60,10 +61,11 @@ export default defineEventHandler(async (event) => {
     }
   }
 }`,
-        variables: query.variables ? JSON.parse(query.variables) : {},
+        variables: {
+          cursor: $cursor
+        },
       },
     });
-
 
     return { data };
   } catch (err) {

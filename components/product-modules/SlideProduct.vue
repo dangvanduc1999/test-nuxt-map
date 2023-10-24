@@ -105,6 +105,7 @@ const modules = [FreeMode, Navigation, Thumbs]
 
     .big-slide {
         height: 100%;
+        width: 90%;
         img {
             width: 100%;
             height: 100%;
