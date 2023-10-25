@@ -12,6 +12,28 @@
                         <img src="https://cdn11.bigcommerce.com/s-kipp5/content/theme_images/logo@2x.png" alt=""
                              width="550"/>
                     </nuxt-link>
+                    <nav class="nav-profile">
+                        <ul>
+                            <li class="navUser-item navUser-item--cart" >
+                                <div class="navUser-action navUser-item--cart__hidden-s" >
+                                    <i class="ico-cart">
+                                        <img
+                                            src="https://cdn11.bigcommerce.com/s-kipp5/content/theme_images/cart@2x.png"
+                                            alt="">
+                                    </i>
+                                </div>
+                            </li>
+                            <li>
+                                <span>
+                                    <i class="ico-login">
+                                        <img
+                                            src="https://cdn11.bigcommerce.com/s-kipp5/content/theme_images/login@2x.png"
+                                            alt="">
+                                    </i>
+                                </span>
+                            </li>
+                        </ul>
+                    </nav>
 
                 </div>
             </div>
@@ -23,7 +45,7 @@
                 <div class="sticky-logo">
                     <img src="https://cdn11.bigcommerce.com/s-kipp5/content/theme_images/sc-logo.jpg" alt="logo">
                 </div>
-                <Navbar/>
+                <Navbar :isSticky="isSticky"/>
             </div>
             <div class="search">
                 <a-form  autocomplete="off">
@@ -54,7 +76,7 @@ import {SearchOutlined} from "@ant-design/icons-vue"
 
 const isShowDrawerMobile = ref<boolean>(false)
 const headerSticky = ref<HTMLElement |null>(null)
-
+const isSticky = ref<boolean>(false)
 //life cycle
 onMounted(() => {
     window.addEventListener("scroll", handleStickyNavBar)
@@ -69,8 +91,10 @@ const handleStickyNavBar = ():void => {
     const sticky = headerSticky.value.offsetTop
     if (window.pageYOffset > sticky) {
         headerSticky.value.classList.add("sticky");
+        isSticky.value = true
     } else {
         headerSticky.value.classList.remove("sticky");
+        isSticky.value = false
     }
 }
 
@@ -82,6 +106,7 @@ const handleStickyNavBar = ():void => {
     top: 0;
     z-index: 100;
     width: 100%;
+
 }
 .search-form{
     margin-bottom: 0;

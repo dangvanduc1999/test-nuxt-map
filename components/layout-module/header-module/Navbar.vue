@@ -2,7 +2,7 @@
     <nav class="nav">
         <ul>
             <li>
-                <a-dropdown v-model:open="openDropdown" :overlayClassName="'nav-menu-dropdown'"
+                <a-dropdown v-model:open="openDropdown" :overlayClassName="['nav-menu-dropdown', isSticky && 'nav-menu-dropdown-sticky']"
                             :destroyPopupOnHide="true">
                     <p>Maps</p>
                     <template class="nav-menu-dropdown" #overlay>
@@ -50,7 +50,12 @@
 <script setup lang="ts">
 import MapDropDownMenu from "~/components/layout-module/header-module/MapDropDownMenu.vue";
 
+interface Props {
+    isSticky : boolean
+}
+defineProps<Props>()
 const openDropdown = ref<boolean>(false)
+
 
 
 </script>

@@ -11,6 +11,7 @@
 import ProductPage from "~/components/product-modules/ProductPage.vue";
 import _ from "lodash"
 import {TYPENAME_QUERY} from "~/utils/constant/app-constants.ts";
+import CategoryPage from "~/components/category-modules/CategoryPage.vue";
 
 useHead({
     script: [

@@ -59,6 +59,8 @@
         justify-content: space-between;
         transition: all .15s ease-in-out;
         transform-origin: top;
+        max-width: 140rem;
+
 
 
         @include breakpoint-down(mobile-medium) {
@@ -69,6 +71,8 @@
         background-color: #fff;
         .shell {
             padding: 1rem 0;
+            max-width: 140rem;
+
             .sticky-logo {
               display: block;
                 margin-right: 1.5rem;
