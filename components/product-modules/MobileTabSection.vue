@@ -14,7 +14,9 @@
         </h3>
     </div>
     <div class="content-tab content-tab2">
-        <slot name="slide-tab2-mobile"/>
+        <div class="container" >
+            <feature-tab />
+        </div>
     </div>
     <div class="title-tab tab3">
         <h3>
@@ -31,6 +33,8 @@
 </template>
 
 <script setup lang="ts">
+import FeatureTab from "~/components/product-modules/FeatureTab.vue";
+
 interface Props {
     name : string,
     description : string,

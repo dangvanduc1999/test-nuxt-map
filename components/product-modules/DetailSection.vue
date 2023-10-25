@@ -2,7 +2,10 @@
     <section class="detail-product">
         <a-row :gutter="30">
             <a-col :xs="0" :sm="24" :md="24" :lg="12">
-                <slot name="slide-product-desktop"/>
+                <slot name="slide-product-desktop" v-if="formState.region && formState.region !== '' "/>
+                <div v-else>
+                    <img :src="MappingFallBackChooseRegion[formState.state]" alt="map">
+                </div>
             </a-col>
             <a-col :xs="24" :sm="24"  :md="24" :lg="12">
                 <div class="right-col">
@@ -46,6 +49,7 @@
                                                       class="product-custom-select"
                                                       placeholder="please select your region"
                                                       @change="handleChangeRegion">
+                                                <a-select-option :value="''" key="default" default>Please select region</a-select-option>
                                                 <a-select-option v-for="region in queryCategoriReactive.listRegions"
                                                                  :value="region.value"
                                                                  :key="region.value">{{ region.value }}
@@ -53,27 +57,29 @@
                                             </a-select>
                                         </a-form-item>
                                     </a-form-item>
-                                    <div class="wrapper-quanity">
-                                        <p class="current-price">{{ priceText }}</p>
-                                        <div class="quanity">
-                                            <button class=" minus" @click="decreaseQuanity">
-                                                -
-                                            </button>
-                                            <div class="wrapper-qty">
-                                                <p>QTy</p>
-                                                <a-form-item name="quanity">
-                                                    <a-input v-model:value="positiveQuanity" class="product-input"
-                                                             type="number"/>
-                                                </a-form-item>
+                                    <template v-if="formState.region && formState.region !== ''">
+                                        <div class="wrapper-quanity" >
+                                            <p class="current-price">{{ priceText }}</p>
+                                            <div class="quanity">
+                                                <button class=" minus" @click="decreaseQuanity">
+                                                    -
+                                                </button>
+                                                <div class="wrapper-qty">
+                                                    <p>QTy</p>
+                                                    <a-form-item name="quanity">
+                                                        <a-input v-model:value="positiveQuanity" class="product-input"
+                                                                 type="number"/>
+                                                    </a-form-item>
+                                                </div>
+                                                <button class=" plus" @click="increseQuanity">
+                                                    +
+                                                </button>
                                             </div>
-                                            <button class=" plus" @click="increseQuanity">
-                                                +
-                                            </button>
                                         </div>
-                                    </div>
-                                    <a-form-item  :wrapper-col="{ offset: 5, span: 16 }">
-                                        <button  class="btn" type="submit">Add to cart</button>
-                                    </a-form-item>
+                                        <a-form-item  :wrapper-col="{ offset: 5, span: 16 }">
+                                            <button  class="btn" type="submit">Add to cart</button>
+                                        </a-form-item>
+                                    </template>
                                 </a-form>
                                 <!--element for mobile-->
                                 <div class="action-mobile">
@@ -92,12 +98,13 @@
                                         class="product-custom-select"
                                         placeholder="please select your region"
                                         @change="handleChangeRegion">
+                                        <a-select-option :value="''" key="default" default>Please select region</a-select-option>
                                         <a-select-option v-for="region in queryCategoriReactive.listRegions"
                                                 :value="region.value"
                                                 :key="region.value">{{ region.value }}
                                         </a-select-option>
                                     </a-select>
-                                    <div class="rating">
+                                    <div class="rating" v-if="formState.region && formState.region !== ''">
                                         <div class="stars-list">
                                             <StarOutlined/>
                                             <StarOutlined/>
@@ -112,14 +119,17 @@
                             </a-col>
                             <a-col :xs="0" :sm="12" class="image">
                                 <div>
-                                    <img src="~/assets/images/sections/product-page/map.png" alt="map">
+                                    <img :src="MappingFallBackChooseRegion[formState.state]" alt="map">
                                 </div>
                             </a-col>
                             <!--                            element for mobile-->
                             <a-col :xs="24" :sm="0">
-                                <slot name="slide-product-mobile"></slot>
+                                <slot name="slide-product-mobile"  v-if="formState.region && formState.region !== '' "></slot>
+                                <div v-else>
+                                    <img :src="MappingFallBackChooseRegion[formState.state]" alt="map">
+                                </div>
                             </a-col>
-                            <a-col :xs="24" :sm="0">
+                            <a-col :xs="24" :sm="0" v-if="formState.region && formState.region !== ''">
                                 <div class="wrapper-quanity">
                                     <p class="current-price">{{priceText}}</p>
                                     <div class="quanity">
@@ -158,6 +168,10 @@ import {edgeProducts} from "~/type/product.type";
 import {getCategory} from "~/services/products.service";
 import type {stateRegion} from "~/type/product.type";
 import type {ObjectMapping} from "~/type/base.type";
+import {useProductDetail} from "~/pinia/product-detail.store";
+import {END_POINT} from "~/utils/constant/app-endpoint";
+import {MappingFallBackChooseRegion} from "~/utils/constant/app-constants";
+import {convertToSnakeCase} from "~/utils/helper/convertStringToSnakeCase";
 
 type mappingRegionToPathRefType = ObjectMapping<string> | null
 
@@ -191,16 +205,15 @@ interface Props {
 const {name, price, listState, currentState} = defineProps<Props>()
 
 const route = useRoute();
-
+const currenProduct = useProductDetail()
 const pathRef = ref(route.fullPath)
 const formState = ref<FormState>({
     layout: "vertical",
     state: currentState || listState[0].value || "",
-    region:  undefined,
+    region:  "",
     quanity: 1
 });
 const mappingRegionToPathRef = ref<mappingRegionToPathRefType>(null)
-
 const listEdgeProductHasRegion = ref<edgeProducts[]>([])
 const queryCategoriReactive = reactive<IqueryCategoriReactive>({
     loading : false,
@@ -210,11 +223,27 @@ const queryCategoriReactive = reactive<IqueryCategoriReactive>({
     listRegions: [],
     categoryId: 1022,
 })
+const queryParamsProduct = reactive({
+    product_path : `/fishing-map-guides/${convertToSnakeCase(formState.value.state)}`
+})
+
+const {data: currentNode} = useFetch(() => END_POINT.route,{
+    query : queryParamsProduct,
+    server: false,
+    onResponse({response}){
+        currenProduct.addProductCurrentDetail(response._data)
+    },
+    watch :[queryParamsProduct],
+})
+
+
 
 watch(pathRef, async () => {
     listEdgeProductHasRegion.value = []
     queryCategoriReactive.cursorRef = null
 })
+
+
 
 watch(() => queryCategoriReactive.cursorRef, async () => {
     handleGetAllCategory()
@@ -222,8 +251,9 @@ watch(() => queryCategoriReactive.cursorRef, async () => {
 
 onMounted(() => {
     handleGetAllCategory()
-
+    currenProduct.addProductCurrentDetail(currentNode)
 })
+
 
 
 // computed region
@@ -245,7 +275,8 @@ const positiveQuanity = computed({
 });
 
 const refetchHook = (value: string) => {
-    formState.value.region = undefined
+    queryParamsProduct.product_path = `/fishing-map-guides/${convertToSnakeCase(value)}`
+    formState.value.region = ''
     queryCategoriReactive.listRegions = []
     queryCategoriReactive.cursorRef = null
     queryCategoriReactive.productAttrJsonRef = `{ attribute:"State", values:["${value}"] }`
@@ -264,7 +295,7 @@ const decreaseQuanity = () => {
 }
 
 const handleChangeRegion =  (value: stateRegion['value']) => {
-    if(!mappingRegionToPathRef.value) {
+    if(value === "" || !mappingRegionToPathRef.value) {
         return
     }
     const pathNavigate = mappingRegionToPathRef.value[value]

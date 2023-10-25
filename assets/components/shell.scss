@@ -30,7 +30,7 @@
 
 .shell--no-padding {
 	@include breakpoint-down(mobile) {
-		padding: 0; 
+		padding: 0;
 	}
 }
 

@@ -7,13 +7,15 @@ export default defineNuxtConfig({
       extensions: ['.vue'],
     }],
   modules: [
-    "@nuxtjs/apollo", ['@nuxtjs/google-fonts', {
+      "@nuxtjs/apollo",
+      ['@nuxtjs/google-fonts', {
       families: {
           Rubik : true
       }
   }],
-
+      '@pinia/nuxt',
   ],
+
   plugins:['@/plugins/antd-ui'],
   devtools: { enabled: true },
   css: [
@@ -38,6 +40,9 @@ export default defineNuxtConfig({
       },
     },
   },
+    pinia: {
+        storesDirs: ['./pinia/**'],
+    },
   server:"static",
   build: {
     transpile: ["tslib"],

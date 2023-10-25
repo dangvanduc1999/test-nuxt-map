@@ -13,9 +13,7 @@
         <tab-section :description="description">
             <template #mobile-tab-section>
                 <mobile-tab-section class="mobile-tab-section" :name="nameProduct" :description="description"  >
-                    <template #slide-tab2-mobile>
-                        <slide-feature-mobile/>
-                    </template>
+
                 </mobile-tab-section>
             </template>
         </tab-section>
@@ -25,9 +23,7 @@
 import GridImageSection from "~/components/product-modules/GridImageSection.vue";
 import DetailSection from "~/components/product-modules/DetailSection.vue";
 import TabSection from "~/components/product-modules/TabSection.vue";
-import SlideProductMobile from "~/components/product-modules/SlideProductMobile.vue";
 import MobileTabSection from "~/components/product-modules/MobileTabSection.vue";
-import SlideFeatureMobile from "~/components/product-modules/SlideFeatureMobile.vue";
 import _ from "lodash"
 import SlideProduct from "~/components/product-modules/SlideProduct.vue";
 import {filterUniqueObjectsByKeyName} from "~/utils/helper/filterUniqueObjectsByKeyName";
@@ -44,6 +40,7 @@ const ENUM_MAPPING_DATA = {
     region: "Region"
 }
 const route = useRoute()
+
 const {data: nodeDetails} = await useFetch("/api/category_options", {
     query: {
         categoryId: 1022,
@@ -57,6 +54,8 @@ const {data: nodeDetails} = await useFetch("/api/category_options", {
         console.error(`error from ${request} with response error ${Error.message}`)
     }
 });
+
+
 
 
 const nameProduct = computed(() => _.get(props, "data.data.data.site.route.node.name", ""))

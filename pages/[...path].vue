@@ -12,6 +12,17 @@ import ProductPage from "~/components/product-modules/ProductPage.vue";
 import _ from "lodash"
 import {TYPENAME_QUERY} from "~/utils/constant/app-constants.ts";
 
+useHead({
+    script: [
+        {
+            async: true,
+            src: 'https://cdn.jsdelivr.net/npm/bootstrap-v4-grid-only@1.0.0/dist/bootstrap-grid.min.css',
+        },
+    ],
+    link: [
+        {rel: 'stylesheet', type: 'text/css', href: 'https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css'},
+    ]
+})
 const route = useRoute();
 const pathRef = ref(route.fullPath)
 

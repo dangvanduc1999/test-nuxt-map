@@ -126,3 +126,10 @@ export const SubMenuAbouts = [
 
     },
 ]
+
+export const MappingFallBackChooseRegion = {
+    "Minnesota" :"https://store-kipp5.mybigcommerce.com/content/region/fishing-map-guides/minnesota/choose-a-region.jpg",
+    "New York":"https://store-kipp5.mybigcommerce.com/content/region/fishing-map-guides/new-york/choose-a-region.jpg",
+    "Michigan" :"https://store-kipp5.mybigcommerce.com/content/region/fishing-map-guides/michigan/choose-a-region.jpg",
+    "Wisconsin" :"https://store-kipp5.mybigcommerce.com/content/region/fishing-map-guides/wisconsin/choose-a-region.jpg"
+}

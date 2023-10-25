@@ -3,12 +3,12 @@
   "private": true,
   "type": "module",
   "scripts": {
-		"dev": "nuxt dev",
-		"build": "nuxt build",
-		"generate": "nuxt generate",
-		"preview": "nuxt preview",
-		"postinstall": "nuxt prepare"
-	},
+    "dev": "nuxt dev",
+    "build": "nuxt build",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare"
+  },
   "devDependencies": {
     "@nuxt/devtools": "latest",
     "@nuxtjs/apollo": "^5.0.0-alpha.6",
@@ -22,8 +22,10 @@
   },
   "dependencies": {
     "@ant-design/icons-vue": "^7.0.1",
+    "@pinia/nuxt": "^0.5.1",
     "ant-design-vue": "^4.0.3",
     "lodash": "^4.17.21",
+    "pinia": "^2.1.7",
     "swiper": "^10.3.1"
   }
 }

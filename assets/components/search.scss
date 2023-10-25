@@ -4,9 +4,9 @@
 
 .search {
 	@include breakpoint-down(mobile) {
-		margin-right: -1rem; 
+		margin-right: -1rem;
 	}
-	
+
 	form {
 		display: flex;
 		align-items: center;
@@ -14,21 +14,36 @@
 	}
 
 	.search__field {
-		max-width: 6.3rem;
-		border: none;
-		font-size: 1.4rem; 
-		font-weight: 500; 
-		margin-left: 1.2rem; 
+        flex-shrink: 0;
+        border: none !important;
+        box-shadow: none !important;
+        &:focus{
+            box-shadow: none;
+            border-color: transparent;
+        }
+        input {
+            border: none;
+            font-size: 1.4rem;
+            font-weight: 500;
+            margin-left: 1.2rem;
+            &::placeholder {
+                border: none;
+                outline: none;
+                box-shadow: none;
+                font-weight: 400;
+                color: #242f2e;
+            }
 
-		@include breakpoint-down(mobile) {
-			font-size: 1.4rem; 
-			max-width: 5rem;
-			margin-left: .7rem; 
-		}
+            @include breakpoint-down(mobile) {
+                font-size: 1.4rem;
+                max-width: 5rem;
+                margin-left: .7rem;
+            }
 
-		@include breakpoint-down(mobile-medium) {
-			max-width: 11rem; 
-		}
+            @include breakpoint-down(mobile-medium) {
+                max-width: 11rem;
+            }
+        }
 	}
 
 	.search__btn {
@@ -39,7 +54,7 @@
 		outline: none;
 
 		@include breakpoint-down(mobile) {
-			width: 2.3rem; 
+			width: 2.3rem;
 		}
 	}
 }

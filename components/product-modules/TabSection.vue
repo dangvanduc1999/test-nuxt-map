@@ -4,19 +4,23 @@
             <template #tab>
                 <p class="tab-title">Features</p>
             </template>
-            <feature-tab :description="description"/>
+            <feature-tab />
         </a-tab-pane>
-        <a-tab-pane key="2"  >
+        <a-tab-pane key="2" >
             <template #tab>
-                <p class="tab-title">Videos</p>
+                <p class="tab-title">Description</p>
             </template>
-            <!-- <feature-tab :description="description"/> -->
+            <description-tab-section :description="description"/>
         </a-tab-pane>
         <a-tab-pane key="3"  >
             <template #tab>
+                <p class="tab-title">Videos</p>
+            </template>
+        </a-tab-pane>
+        <a-tab-pane key="4"  >
+            <template #tab>
                 <p class="tab-title">eBook Version</p>
             </template>
-            <!-- <feature-tab :description="description"/> -->
         </a-tab-pane>
     </a-tabs>
     <div class="mobile-tab-section">
@@ -25,6 +29,7 @@
 </template>
 <script setup lang="ts">
     import FeatureTab from "~/components/product-modules/FeatureTab.vue";
+    import DescriptionTabSection from "~/components/product-modules/DescriptionTabSection.vue";
 
     interface Props {
         description : string,
