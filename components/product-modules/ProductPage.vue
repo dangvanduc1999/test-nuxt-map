@@ -28,6 +28,7 @@ import _ from "lodash"
 import SlideProduct from "~/components/product-modules/SlideProduct.vue";
 import {filterUniqueObjectsByKeyName} from "~/utils/helper/filterUniqueObjectsByKeyName";
 import {stateRegion} from "~/type/product.type";
+import SlideProductMobile from "~/components/product-modules/SlideProductMobile.vue";
 
 interface Props {
     data: any
