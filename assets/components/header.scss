@@ -50,7 +50,9 @@
     box-shadow: 0  4px 4px rgba(0, 0, 0, 0.35);
     .sticky-logo {
         display: none;
+
     }
+
     .shell{
         padding-left: 0;
         padding-right: 0;
@@ -60,7 +62,9 @@
         transition: all .15s ease-in-out;
         transform-origin: top;
         max-width: 140rem;
-
+        .dropdown {
+            top: 180px;
+        }
 
 
         @include breakpoint-down(mobile-medium) {
@@ -76,6 +80,9 @@
             .sticky-logo {
               display: block;
                 margin-right: 1.5rem;
+            }
+            .dropdown {
+                top: 78px;
             }
         }
     }

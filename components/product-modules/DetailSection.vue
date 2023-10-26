@@ -4,7 +4,7 @@
             <a-col :xs="0" :sm="24" :md="24" :lg="12">
                 <slot name="slide-product-desktop" v-if="formState.region && formState.region !== '' "/>
                 <div v-else>
-                    <img :src="MappingFallBackChooseRegion[formState.state]" alt="map">
+                    <img :src="imageChooseRegion" alt="map">
                 </div>
             </a-col>
             <a-col :xs="24" :sm="24"  :md="24" :lg="12">
@@ -119,14 +119,14 @@
                             </a-col>
                             <a-col :xs="0" :sm="12" class="image">
                                 <div>
-                                    <img :src="MappingFallBackChooseRegion[formState.state]" alt="map">
+                                    <img :src="imageChooseRegion" alt="map">
                                 </div>
                             </a-col>
                             <!--                            element for mobile-->
                             <a-col :xs="24" :sm="0">
                                 <slot name="slide-product-mobile"  v-if="formState.region && formState.region !== '' "></slot>
                                 <div v-else>
-                                    <img :src="MappingFallBackChooseRegion[formState.state]" alt="map">
+                                    <img :src="imageChooseRegion" alt="map">
                                 </div>
                             </a-col>
                             <a-col :xs="24" :sm="0" v-if="formState.region && formState.region !== ''">
@@ -170,9 +170,7 @@ import type {stateRegion} from "~/type/product.type";
 import type {ObjectMapping} from "~/type/base.type";
 import {useProductDetail} from "~/pinia/product-detail.store";
 import {END_POINT} from "~/utils/constant/app-endpoint";
-import {MappingFallBackChooseRegion} from "~/utils/constant/app-constants";
 import {convertToSnakeCase} from "~/utils/helper/convertStringToSnakeCase";
-
 type mappingRegionToPathRefType = ObjectMapping<string> | null
 
 interface FormState {
@@ -273,6 +271,7 @@ const positiveQuanity = computed({
         }
     }
 });
+const imageChooseRegion = computed(() => `https://store-kipp5.mybigcommerce.com/content/region/fishing-map-guides/${convertToSnakeCase(formState.value.state)}/choose-a-region.jpg`)
 
 const refetchHook = (value: string) => {
     queryParamsProduct.product_path = `/fishing-map-guides/${convertToSnakeCase(value)}`
@@ -305,6 +304,7 @@ const handleChangeRegion =  (value: stateRegion['value']) => {
 const onFinish = (values: any) => {
     console.log('Success:', values);
 };
+
 
 const handleGetAllCategory = () => {
     queryCategoriReactive.loading = true

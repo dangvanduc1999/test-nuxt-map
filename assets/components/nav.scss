@@ -138,7 +138,8 @@
 
 }
 .ant-dropdown.nav-menu-dropdown {
-	top: 140px !important;
+	top: 184px !important;
+    position: absolute !important;
 	width: 100%;
 	background-color: $c-dark-blue;
     z-index: 3000;

@@ -11,6 +11,10 @@
 @import 'generic/helpers';
 
 /* ------------------------------------------------------------ *\
+	Common
+\* ------------------------------------------------------------ */
+@import "common/CommonButton.scss";
+/* ------------------------------------------------------------ *\
 	Components
 \* ------------------------------------------------------------ */
 
@@ -73,3 +77,4 @@
 @import "components/product-modules/mobile-tab-section.scss";
 //categories
 @import 'components/category-modules/list-category.scss';
+
