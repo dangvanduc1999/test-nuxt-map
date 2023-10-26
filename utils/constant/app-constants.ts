@@ -2,6 +2,10 @@ export enum TYPENAME_QUERY {
     PRODUCT = "Product",
     CATEGORY = "Category"
 }
+export enum TYPE_NODEEDGES {
+    state = "State",
+    region = "Region"
+}
 
 
 export const TopNavMenuMobile = [

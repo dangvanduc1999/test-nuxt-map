@@ -163,14 +163,15 @@
 <script setup lang="ts">
 import {StarOutlined} from "@ant-design/icons-vue"
 import {roundToTwoDecimalPlaces} from "~/utils/helper/formatNumber";
-import _ from "lodash"
+import {get, isEmpty} from "lodash"
 import {edgeProducts} from "~/type/product.type";
 import {getCategory} from "~/services/products.service";
-import type {stateRegion} from "~/type/product.type";
-import type {ObjectMapping} from "~/type/base.type";
 import {useProductDetail} from "~/pinia/product-detail.store";
 import {END_POINT} from "~/utils/constant/app-endpoint";
 import {convertToSnakeCase} from "~/utils/helper/convertStringToSnakeCase";
+import type {stateRegion} from "~/type/product.type";
+import type {ObjectMapping} from "~/type/base.type";
+
 type mappingRegionToPathRefType = ObjectMapping<string> | null
 
 interface FormState {
@@ -279,6 +280,7 @@ const refetchHook = (value: string) => {
     queryCategoriReactive.listRegions = []
     queryCategoriReactive.cursorRef = null
     queryCategoriReactive.productAttrJsonRef = `{ attribute:"State", values:["${value}"] }`
+    handleGetAllCategory()
 }
 
 const increseQuanity = () => {
@@ -310,36 +312,36 @@ const handleGetAllCategory = () => {
     queryCategoriReactive.loading = true
     getCategory(queryCategoriReactive.categoryId, queryCategoriReactive.productAttrJsonRef, queryCategoriReactive.cursorRef)
     .then(res => {
-        queryCategoriReactive.hasNextPage = _.get(res, "data.data.site.search.searchProducts.products.pageInfo.hasNextPage", false)
+        queryCategoriReactive.hasNextPage =  get(res, "data.data.site.search.searchProducts.products.pageInfo.hasNextPage", false)
 
-        let edgeProducts = _.get(res, "data.data.site.search.searchProducts.products.edges", [])
+        let edgeProducts =  get(res, "data.data.site.search.searchProducts.products.edges", [])
         let regionsFilteredByState: stateRegion[];
 
         const listEdgeProducts: edgeProducts[] = edgeProducts.filter((item: edgeProducts) => {
-            const nodeState = _.get(item, "node.customFields.edges[0].node.value", "")
-            const isHasNoRegion = _.isEmpty(_.get(item, "node.customFields.edges", [])[1])
+            const nodeState =  get(item, "node.customFields.edges[0].node.value", "")
+            const isHasNoRegion =  isEmpty( get(item, "node.customFields.edges", [])[1])
             return !isHasNoRegion && nodeState === formState.value.state
         })
         listEdgeProductHasRegion.value = [...listEdgeProductHasRegion.value, ...listEdgeProducts]
         // handle cache current path of current state
         if (listEdgeProducts.length > 0) {
             mappingRegionToPathRef.value = listEdgeProductHasRegion.value.reduce((acc, curr) => {
-                const valueMapping = _.get(curr, "node.customFields.edges[1].node.value")
+                const valueMapping =  get(curr, "node.customFields.edges[1].node.value")
                 // init formState region
-                if (_.get(curr, "node.path") === route.fullPath) {
+                if ( get(curr, "node.path") === route.fullPath) {
                     formState.value.region = valueMapping
                 }
-                (acc as any)[valueMapping] = _.get(curr, "node.path")
+                (acc as any)[valueMapping] =  get(curr, "node.path")
                 return acc
             }, {})
         }
 
         // mapping current region to current state
 
-        regionsFilteredByState = listEdgeProducts.map(item => _.get(item, "node.customFields.edges[1].node", [{name: "Region", value: ""}])) as any
+        regionsFilteredByState = listEdgeProducts.map(item =>  get(item, "node.customFields.edges[1].node", [{name: "Region", value: ""}])) as any
         queryCategoriReactive.listRegions = [...queryCategoriReactive.listRegions, ...regionsFilteredByState]
         if (queryCategoriReactive.hasNextPage) {
-            queryCategoriReactive.cursorRef = _.get(res, "data.data.site.search.searchProducts.products.pageInfo.endCursor", "no cursor")
+            queryCategoriReactive.cursorRef =  get(res, "data.data.site.search.searchProducts.products.pageInfo.endCursor", "no cursor")
         }
     })
     .catch(error => {

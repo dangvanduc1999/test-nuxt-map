@@ -9,9 +9,9 @@
 </template>
 <script setup>
 import ProductPage from "~/components/product-modules/ProductPage.vue";
-import _ from "lodash"
 import {TYPENAME_QUERY} from "~/utils/constant/app-constants.ts";
 import CategoryPage from "~/components/category-modules/CategoryPage.vue";
+import {get} from "lodash";
 
 useHead({
     script: [
@@ -33,8 +33,8 @@ const {data: nodeDetails, pending } = await useFetch("/api/get_route", {
     },
     watch: [pathRef]
 });
-const checkProductNode = computed(() => _.get(nodeDetails.value, "data.data.site.route.node.__typename", "") === TYPENAME_QUERY.PRODUCT.toString());
-const checkCategoryNode = computed(() => _.get(nodeDetails.value, "data.data.site.route.node.__typename", "") === TYPENAME_QUERY.CATEGORY.toString())
+const checkProductNode = computed(() => get(nodeDetails.value, "data.data.site.route.node.__typename", "") === TYPENAME_QUERY.PRODUCT.toString());
+const checkCategoryNode = computed(() => get(nodeDetails.value, "data.data.site.route.node.__typename", "") === TYPENAME_QUERY.CATEGORY.toString())
 
 </script>
 

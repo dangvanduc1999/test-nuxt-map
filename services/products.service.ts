@@ -6,6 +6,9 @@ export const getCategory = async (categoryId: number, productAttr: string, curso
 			categoryId,
 			productAttr,
 			cursor,
-		}
-	})
+		},
+        onRequest({request}): Promise<void> | void {
+            console.log("request", request)
+        }
+    })
 }
