@@ -53,6 +53,6 @@ export default defineNuxtConfig({
     },
     server:"static",
     build: {
-        transpile: ["tslib","lodash-es","lodash"],
+        transpile: ["tslib"],
     },
 })

@@ -177,6 +177,7 @@
 			}
 			.ant-collapse-header-text,.ant-collapse-header-text{
 				color: $c-white;
+
 			}
             .ant-collapse-content-box {
                 width: 100%;
@@ -192,6 +193,9 @@
                     margin-right: 2rem;
                     a {
                         text-decoration: none;
+						&:hover {
+							color: $hover-text-color;
+						}
                     }
                 }
             }

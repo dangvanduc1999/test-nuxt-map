@@ -52,7 +52,7 @@
                     <a-form-item class="search-form" >
                         <a-input type="text" name="q" id="q"    placeholder="Search the store" class="search__field">
                             <template #prefix>
-                                <SearchOutlined />
+                                <img src="https://cdn11.bigcommerce.com/s-kipp5/content/theme_images/search.png" alt="search" class="search-icon">
                             </template>
                         </a-input>
                     </a-form-item>
@@ -113,5 +113,9 @@ const handleStickyNavBar = ():void => {
 }
 .search {
     flex-shrink: 0;
+}
+.search__icon{
+    width: 30px;
+    height: 30px;
 }
 </style>

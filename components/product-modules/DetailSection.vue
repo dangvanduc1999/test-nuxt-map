@@ -163,7 +163,7 @@
 <script setup lang="ts">
 import {StarOutlined} from "@ant-design/icons-vue"
 import {roundToTwoDecimalPlaces} from "~/utils/helper/formatNumber";
-import {get, isEmpty} from "lodash"
+import _ from "lodash"
 import {edgeProducts} from "~/type/product.type";
 import {getCategory} from "~/services/products.service";
 import {useProductDetail} from "~/pinia/product-detail.store";
@@ -272,8 +272,8 @@ const positiveQuanity = computed({
         }
     }
 });
-const imageChooseRegion = computed(() => `https://store-kipp5.mybigcommerce.com/content/region/fishing-map-guides/${convertToSnakeCase(formState.value.state)}/choose-a-region.jpg`)
-
+const imageChooseRegion = computed(() => `https://store-kipp5.mybigcommerce.com/content/region/fishing-map-guides/${convertToSnakeCase(formState.value.state)}/choose-a-region.svg`)
+const imageChooseMainImage = computed(() => `https://store-kipp5.mybigcommerce.com/content/region/fishing-map-guides/${convertToSnakeCase(formState.value.state)}/choose-a-region.jpg`)
 const refetchHook = (value: string) => {
     queryParamsProduct.product_path = `/fishing-map-guides/${convertToSnakeCase(value)}`
     formState.value.region = ''
@@ -312,36 +312,36 @@ const handleGetAllCategory = () => {
     queryCategoriReactive.loading = true
     getCategory(queryCategoriReactive.categoryId, queryCategoriReactive.productAttrJsonRef, queryCategoriReactive.cursorRef)
     .then(res => {
-        queryCategoriReactive.hasNextPage =  get(res, "data.data.site.search.searchProducts.products.pageInfo.hasNextPage", false)
+        queryCategoriReactive.hasNextPage =  _.get(res, "data.data.site.search.searchProducts.products.pageInfo.hasNextPage", false)
 
-        let edgeProducts =  get(res, "data.data.site.search.searchProducts.products.edges", [])
+        let edgeProducts =  _.get(res, "data.data.site.search.searchProducts.products.edges", [])
         let regionsFilteredByState: stateRegion[];
 
         const listEdgeProducts: edgeProducts[] = edgeProducts.filter((item: edgeProducts) => {
-            const nodeState =  get(item, "node.customFields.edges[0].node.value", "")
-            const isHasNoRegion =  isEmpty( get(item, "node.customFields.edges", [])[1])
+            const nodeState =  _.get(item, "node.customFields.edges[0].node.value", "")
+            const isHasNoRegion =  _.isEmpty( _.get(item, "node.customFields.edges", [])[1])
             return !isHasNoRegion && nodeState === formState.value.state
         })
         listEdgeProductHasRegion.value = [...listEdgeProductHasRegion.value, ...listEdgeProducts]
         // handle cache current path of current state
         if (listEdgeProducts.length > 0) {
             mappingRegionToPathRef.value = listEdgeProductHasRegion.value.reduce((acc, curr) => {
-                const valueMapping =  get(curr, "node.customFields.edges[1].node.value")
+                const valueMapping =  _.get(curr, "node.customFields.edges[1].node.value")
                 // init formState region
-                if ( get(curr, "node.path") === route.fullPath) {
+                if ( _.get(curr, "node.path") === route.fullPath) {
                     formState.value.region = valueMapping
                 }
-                (acc as any)[valueMapping] =  get(curr, "node.path")
+                (acc as any)[valueMapping] =  _.get(curr, "node.path")
                 return acc
             }, {})
         }
 
         // mapping current region to current state
 
-        regionsFilteredByState = listEdgeProducts.map(item =>  get(item, "node.customFields.edges[1].node", [{name: "Region", value: ""}])) as any
+        regionsFilteredByState = listEdgeProducts.map(item =>  _.get(item, "node.customFields.edges[1].node", [{name: "Region", value: ""}])) as any
         queryCategoriReactive.listRegions = [...queryCategoriReactive.listRegions, ...regionsFilteredByState]
         if (queryCategoriReactive.hasNextPage) {
-            queryCategoriReactive.cursorRef =  get(res, "data.data.site.search.searchProducts.products.pageInfo.endCursor", "no cursor")
+            queryCategoriReactive.cursorRef =  _.get(res, "data.data.site.search.searchProducts.products.pageInfo.endCursor", "no cursor")
         }
     })
     .catch(error => {

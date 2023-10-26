@@ -27,7 +27,7 @@ import {filterUniqueObjectsByKeyName} from "~/utils/helper/filterUniqueObjectsBy
 import {stateRegion} from "~/type/product.type";
 import SlideProductMobile from "~/components/product-modules/SlideProductMobile.vue";
 import {TYPE_NODEEDGES} from "~/utils/constant/app-constants";
-import {get, isEmpty} from "lodash";
+import _ from "lodash";
 
 interface Props {
     data: any
@@ -54,11 +54,11 @@ const {data: nodeDetails, refresh} = await useFetch("/api/category_options", {
         console.error(`error from ${request} with response error ${response}`)
     },
     onResponse: ({response}) => {
-        const metaData = get(response._data, "data.data.site.search.searchProducts.products.pageInfo")
-        let edgeProducts = get(response._data, "data.data.site.search.searchProducts.products.edges", [])
+        const metaData = _.get(response._data, "data.data.site.search.searchProducts.products.pageInfo")
+        let edgeProducts = _.get(response._data, "data.data.site.search.searchProducts.products.edges", [])
         let listState = edgeProducts.reduce((acc, curr) => {
-            const state = get(curr, "node.customFields.edges[0].node")
-            if (!isEmpty(state) && get(state, "name") === ENUM_MAPPING_DATA.state) {
+            const state = _.get(curr, "node.customFields.edges[0].node")
+            if (!_.isEmpty(state) && _.get(state, "name") === ENUM_MAPPING_DATA.state) {
                 acc.push(state)
             }
             return acc
@@ -75,17 +75,17 @@ const {data: nodeDetails, refresh} = await useFetch("/api/category_options", {
 });
 
 
-const nameProduct = computed(() => get(props, "data.data.data.site.route.node.name", ""))
-const listImages = computed(() => get(props, "data.data.data.site.route.node.images.edges", []))
-const priceProduct = computed(() => get(props, "data.data.data.site.route.node.prices.price", {}))
-const description = computed(() => get(props, "data.data.data.site.route.node.description", ""))
+const nameProduct = computed(() => _.get(props, "data.data.data.site.route.node.name", ""))
+const listImages = computed(() => _.get(props, "data.data.data.site.route.node.images.edges", []))
+const priceProduct = computed(() => _.get(props, "data.data.data.site.route.node.prices.price", {}))
+const description = computed(() => _.get(props, "data.data.data.site.route.node.description", ""))
 const currentState = computed(() => {
-    const listEdges = get(props, "data.data.data.site.route.node.customFields.edges", [])
+    const listEdges = _.get(props, "data.data.data.site.route.node.customFields.edges", [])
     let valueReturn = ""
     for (let edge of listEdges) {
-        const name = get(edge, "node.name", "")
+        const name = _.get(edge, "node.name", "")
         if (name === TYPE_NODEEDGES.state.toString()) {
-            valueReturn = get(edge, "node.value", "")
+            valueReturn = _.get(edge, "node.value", "")
             break;
         }
     }
