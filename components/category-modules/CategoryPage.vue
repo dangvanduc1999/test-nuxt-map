@@ -1,8 +1,8 @@
 <template>
     <main class="product-page-module">
         <grid-image-section/>
-        <description-category :description="_.get(data,'data.data.site.route.node.description','')" />
-        <list-categories :list-categories-info="_.get(data,'data.data.site.route.node.products',{})" />
+        <description-category :description="data?.data.data.site.route.node.description" />
+        <list-categories :list-categories-info="data.data.data.site.route.node.products" />
     </main>
 </template>
 <script setup lang="ts">

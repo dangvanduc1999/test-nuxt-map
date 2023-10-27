@@ -2,7 +2,7 @@
     <a-row>
         <a-col :span="24">
             <div class="listCategories">
-                <category-item v-for="categoryNode in listCategories" :key="_.get(listCategories,'node.entityId')"
+                <category-item v-for="categoryNode in listCategories" :key="categoryNode?.node.entityId"
                                :categoryNode="categoryNode.node"/>
             </div>
         </a-col>
