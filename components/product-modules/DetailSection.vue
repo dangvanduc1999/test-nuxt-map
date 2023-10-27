@@ -4,7 +4,7 @@
             <a-col :xs="0" :sm="24" :md="24" :lg="12">
                 <slot name="slide-product-desktop" v-if="formState.region && formState.region !== '' "/>
                 <div v-else>
-                    <img :src="imageChooseRegion" alt="map">
+                    <img :src="imageChooseMainImage" alt="map">
                 </div>
             </a-col>
             <a-col :xs="24" :sm="24"  :md="24" :lg="12">
@@ -77,7 +77,7 @@
                                             </div>
                                         </div>
                                         <a-form-item  :wrapper-col="{ offset: 5, span: 16 }">
-                                            <button  class="btn" type="submit">Add to cart</button>
+                                            <button  class="btn btn-add-to-cart" type="submit">Add to cart</button>
                                         </a-form-item>
                                     </template>
                                 </a-form>

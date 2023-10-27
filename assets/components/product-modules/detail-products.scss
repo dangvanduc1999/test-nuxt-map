@@ -36,6 +36,12 @@
                         display: none;
                     }
                 }
+                .btn-add-to-cart {
+                    font-weight: bold;
+                    &:hover {
+                        color : $c-white
+                    }
+                }
 
                 .action-mobile {
                     display: none;
