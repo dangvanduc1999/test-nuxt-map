@@ -1,15 +1,15 @@
 <template>
     <main class="product-page-module">
         <grid-image-section />
-        <detail-section :name="nameProduct" :list-slide-image="listImages" :price="priceProduct"
-                        :list-region="[]" :list-state="listStateRef" :current-state="currentState">
-            <template #slide-product-desktop>
-                <slide-product :list-slide-image="listImages"/>
-            </template>
-            <template #slide-product-mobile>
-                <slide-product-mobile :list-slide-image="listImages"/>
-            </template>
-        </detail-section>
+<!--        <detail-section :name="nameProduct" :list-slide-image="listImages" :price="priceProduct"-->
+<!--                        :list-region="[]" :list-state="listStateRef" :current-state="currentState">-->
+<!--            <template #slide-product-desktop>-->
+<!--                <slide-product :list-slide-image="listImages"/>-->
+<!--            </template>-->
+<!--            <template #slide-product-mobile>-->
+<!--                <slide-product-mobile :list-slide-image="listImages"/>-->
+<!--            </template>-->
+<!--        </detail-section>-->
         <tab-section :description="description">
             <template #mobile-tab-section>
                 <mobile-tab-section class="mobile-tab-section" :name="nameProduct" :description="description"/>
