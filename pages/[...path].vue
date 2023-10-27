@@ -14,12 +14,6 @@ import CategoryPage from "~/components/category-modules/CategoryPage.vue";
 import _ from "lodash";
 
 useHead({
-    script: [
-        {
-            async: true,
-            src: 'https://cdn.jsdelivr.net/npm/bootstrap-v4-grid-only@1.0.0/dist/bootstrap-grid.min.css',
-        },
-    ],
     link: [
         {rel: 'stylesheet', type: 'text/css', href: 'https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css'},
     ]
