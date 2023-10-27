@@ -1,8 +1,8 @@
 <template>
     <main class="product-page-module">
         <grid-image-section/>
-        <description-category :description="data?.data.data.site.route.node.description" />
-        <list-categories :list-categories-info="data.data.data.site.route.node.products" />
+        <description-category :description="description" />
+        <list-categories :list-categories-info="listCategoriesInfo" />
     </main>
 </template>
 <script setup lang="ts">
@@ -14,5 +14,7 @@ import _ from "lodash";
 interface Props {
   data: any
 }
- defineProps<Props>()
+ const props = defineProps<Props>()
+const description = computed(() => _.get(props.data,'data.data.site.route.node.description',''))
+const listCategoriesInfo = computed(() => _.get(props.data,'data.data.site.route.node.products',{}))
 </script>

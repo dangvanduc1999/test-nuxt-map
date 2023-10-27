@@ -11,6 +11,7 @@
 import ProductPage from "~/components/product-modules/ProductPage.vue";
 import {TYPENAME_QUERY} from "~/utils/constant/app-constants.ts";
 import CategoryPage from "~/components/category-modules/CategoryPage.vue";
+import _ from "lodash";
 
 useHead({
     link: [
@@ -26,8 +27,8 @@ const {data: nodeDetails, pending } = await useFetch("/api/get_route", {
     },
     watch: [pathRef]
 });
-const checkProductNode = computed(() => nodeDetails.value.data.data.site.route.node.__typename === TYPENAME_QUERY.PRODUCT.toString())
-const checkCategoryNode = computed(() => nodeDetails.value.data.data.site.route.node.__typename=== TYPENAME_QUERY.CATEGORY.toString())
+const checkProductNode = computed(() => _.get(nodeDetails.value, "data.data.site.route.node.__typename", "") === TYPENAME_QUERY.PRODUCT.toString());
+const checkCategoryNode = computed(() => _.get(nodeDetails.value, "data.data.site.route.node.__typename", "") === TYPENAME_QUERY.CATEGORY.toString())
 
 </script>
 
