@@ -54,11 +54,11 @@ const {data: nodeDetails, refresh} = await useFetch("/api/category_options", {
         console.error(`error from ${request} with response error ${response}`)
     },
     onResponse: ({response}) => {
-        const metaData = _.get(response._data, "data.data.site.search.searchProducts.products.pageInfo")
-        let edgeProducts = _.get(response._data, "data.data.site.search.searchProducts.products.edges", [])
+        const metaData = response._data?.data.data.site.search.searchProducts.products.pageInfo
+        let edgeProducts = response._data?.data.data.site.search.searchProducts.products.edges ?? []
         let listState = edgeProducts.reduce((acc, curr) => {
-            const state = _.get(curr, "node.customFields.edges[0].node")
-            if (!_.isEmpty(state) && _.get(state, "name") === ENUM_MAPPING_DATA.state) {
+            const state = curr?.node.customFields.edges[0].node
+            if (state && state.name === ENUM_MAPPING_DATA.state) {
                 acc.push(state)
             }
             return acc
