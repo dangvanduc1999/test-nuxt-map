@@ -45,12 +45,6 @@ export default defineNuxtConfig({
     pinia: {
         storesDirs: ['./pinia/**'],
     },
-    lodash: {
-        prefix: "_",
-        prefixSkip: ["string"],
-        upperAfterPrefix: false,
-        exclude: ["map"],
-    },
     server:"static",
     build: {
         transpile: ["tslib"],
